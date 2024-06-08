@@ -4,7 +4,7 @@ import { View, Text, StyleSheet } from 'react-native';
 export default function ControlScreen() {
   return (
     <View style={styles.container}>
-      <Text>Search Screen</Text>
+      <Text>Control Screen</Text>
     </View>
   );
 }

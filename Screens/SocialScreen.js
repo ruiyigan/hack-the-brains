@@ -4,7 +4,7 @@ import { View, Text, StyleSheet } from 'react-native';
 export default function SocialScreen() {
   return (
     <View style={styles.container}>
-      <Text>Notifications Screen</Text>
+      <Text>Social Screen</Text>
     </View>
   );
 }
