@@ -102,7 +102,7 @@ const ForgotPassword = () => {
         <View style={[styles.homeIndicator, styles.childPosition]} />
       </View>
       <Text style={[styles.project, styles.childPosition]}>Project</Text>
-      <View style={[styles.forgotPasswordChild, styles.iconLayout]} />
+      <View style={[styles.forgotPasswordChild, styles.iconLayout1]} />
       <View style={[styles.barTab2Project, styles.barLayout]}>
         <View style={[styles.tabBar, styles.indicatorPosition]}>
           <View style={[styles.active, styles.activeSpaceBlock]}>
@@ -207,7 +207,7 @@ const ForgotPassword = () => {
       <Image
         style={styles.buttonFab}
         contentFit="cover"
-        source={require("../assets/button--fab1.png")}
+        source={require("../assets/button--fab.png")}
       />
       <View style={[styles.overlay, styles.modalPosition]}>
         <View style={[styles.modal, styles.modalPosition]} />
@@ -218,7 +218,7 @@ const ForgotPassword = () => {
           <Image
             style={[styles.labelIcon, styles.dateLayout]}
             contentFit="cover"
-            source={require("../assets/label1.png")}
+            source={require("../assets/label.png")}
           />
           <Text style={[styles.jan12021, styles.iconPosition1]}>
             Jan 1 2024
@@ -229,21 +229,26 @@ const ForgotPassword = () => {
             Reset Password
           </Text>
           <Image
-            style={[styles.iconBackward, styles.iconLayout]}
+            style={[styles.iconBackward, styles.iconLayout1]}
             contentFit="cover"
             source={require("../assets/icon--backward.png")}
           />
-          <Image
-            style={[styles.iconCancel, styles.text16Position]}
-            contentFit="cover"
-            source={require("../assets/icon--cancel.png")}
-          />
+          <Pressable
+            style={[styles.iconCancel, styles.iconLayout1]}
+            onPress={() => navigation.navigate("SignInPasswordHidden")}
+          >
+            <Image
+              style={[styles.icon, styles.iconLayout]}
+              contentFit="cover"
+              source={require("../assets/icon--cancel.png")}
+            />
+          </Pressable>
         </View>
         <Pressable
           style={[styles.buttonPrimaryTextAble, styles.dateLayout]}
           onPress={() => navigation.navigate("PasswordResetSuccess")}
         >
-          <View style={[styles.text16, styles.text16Position]}>
+          <View style={styles.text16}>
             <Text style={[styles.button, styles.newLayout]}>
               Reset Password
             </Text>
@@ -277,7 +282,7 @@ const ForgotPassword = () => {
           onPress={() => navigation.navigate("ForgotPasswordConcealed")}
         >
           <Image
-            style={styles.icon}
+            style={styles.iconLayout}
             contentFit="cover"
             source={require("../assets/icon--eyes1.png")}
           />
@@ -306,7 +311,7 @@ const ForgotPassword = () => {
           onPress={() => navigation.navigate("ForgotPasswordConcealed")}
         >
           <Image
-            style={styles.icon}
+            style={styles.iconLayout}
             contentFit="cover"
             source={require("../assets/icon--eyes1.png")}
           />
@@ -348,7 +353,6 @@ const styles = StyleSheet.create({
     height: 16,
     width: 16,
     borderRadius: Border.br_9xs,
-    overflow: "hidden",
     backgroundColor: Color.universalWhite,
   },
   text2FlexBox: {
@@ -374,6 +378,7 @@ const styles = StyleSheet.create({
   cardChildPosition: {
     top: 70,
     position: "absolute",
+    overflow: "hidden",
   },
   ellipseIconPosition: {
     left: 134,
@@ -387,10 +392,9 @@ const styles = StyleSheet.create({
     left: "50%",
     position: "absolute",
   },
-  iconLayout: {
+  iconLayout1: {
     height: 24,
     width: 24,
-    overflow: "hidden",
   },
   activeSpaceBlock: {
     paddingVertical: Padding.p_5xs,
@@ -400,7 +404,7 @@ const styles = StyleSheet.create({
   },
   newLayout: {
     lineHeight: 24,
-    fontSize: FontSize.sansBodyBodyCopy_size,
+    fontSize: FontSize.headlines18Bold_size,
   },
   datePosition: {
     top: 364,
@@ -423,11 +427,10 @@ const styles = StyleSheet.create({
     top: 12,
     position: "absolute",
   },
-  text16Position: {
-    marginTop: -12,
-    left: "50%",
-    top: "50%",
-    position: "absolute",
+  iconLayout: {
+    height: "100%",
+    overflow: "hidden",
+    width: "100%",
   },
   textShadowBox: {
     shadowOpacity: 1,
@@ -494,6 +497,7 @@ const styles = StyleSheet.create({
     left: "50%",
     position: "absolute",
     top: "50%",
+    overflow: "hidden",
   },
   frameView: {
     left: 275,
@@ -537,7 +541,6 @@ const styles = StyleSheet.create({
     height: 16,
     width: 16,
     borderRadius: Border.br_9xs,
-    overflow: "hidden",
     backgroundColor: Color.universalWhite,
     left: 24,
   },
@@ -546,7 +549,6 @@ const styles = StyleSheet.create({
     height: 16,
     width: 16,
     borderRadius: Border.br_9xs,
-    overflow: "hidden",
     backgroundColor: Color.universalWhite,
   },
   rectangleView: {
@@ -609,6 +611,7 @@ const styles = StyleSheet.create({
     backgroundColor: Color.neutral2,
     top: 70,
     position: "absolute",
+    overflow: "hidden",
     borderRadius: Border.br_5xs,
     left: 24,
   },
@@ -703,7 +706,7 @@ const styles = StyleSheet.create({
     left: 56,
     display: "none",
     lineHeight: 24,
-    fontSize: FontSize.sansBodyBodyCopy_size,
+    fontSize: FontSize.headlines18Bold_size,
     fontFamily: FontFamily.poppinsMedium,
     fontWeight: "500",
     textAlign: "left",
@@ -731,12 +734,16 @@ const styles = StyleSheet.create({
     display: "none",
     left: 0,
     position: "absolute",
+    overflow: "hidden",
+  },
+  icon: {
+    marginLeft: 139.5,
+    marginTop: -12,
   },
   iconCancel: {
-    marginLeft: 139.5,
-    height: 24,
-    width: 24,
-    overflow: "hidden",
+    left: "50%",
+    position: "absolute",
+    top: "50%",
   },
   navigation: {
     width: 327,
@@ -748,12 +755,15 @@ const styles = StyleSheet.create({
     textAlign: "center",
     fontFamily: FontFamily.poppinsMedium,
     fontWeight: "500",
-    fontSize: FontSize.sansBodyBodyCopy_size,
+    fontSize: FontSize.headlines18Bold_size,
   },
   text16: {
     marginLeft: -64,
-    flexDirection: "row",
     marginTop: -12,
+    flexDirection: "row",
+    left: "50%",
+    top: "50%",
+    position: "absolute",
   },
   buttonPrimaryTextAble: {
     top: 500,
@@ -781,7 +791,7 @@ const styles = StyleSheet.create({
   text17: {
     left: -61,
     lineHeight: 24,
-    fontSize: FontSize.sansBodyBodyCopy_size,
+    fontSize: FontSize.headlines18Bold_size,
     textAlign: "center",
     fontFamily: FontFamily.poppinsMedium,
     fontWeight: "500",
@@ -790,8 +800,8 @@ const styles = StyleSheet.create({
     display: "none",
     height: 24,
     width: 24,
-    overflow: "hidden",
     left: 24,
+    overflow: "hidden",
   },
   iconEyes: {
     left: 279,
@@ -812,11 +822,6 @@ const styles = StyleSheet.create({
     },
     shadowColor: "rgba(0, 0, 0, 0.08)",
   },
-  icon: {
-    height: "100%",
-    overflow: "hidden",
-    width: "100%",
-  },
   iconEyes1: {
     top: 296,
   },
@@ -825,7 +830,7 @@ const styles = StyleSheet.create({
     left: 31,
     fontFamily: FontFamily.poppinsMedium,
     fontWeight: "500",
-    fontSize: FontSize.sansBodyBodyCopy_size,
+    fontSize: FontSize.headlines18Bold_size,
     textAlign: "left",
     color: Color.textColor,
     position: "absolute",
@@ -843,7 +848,7 @@ const styles = StyleSheet.create({
     left: 30,
     fontFamily: FontFamily.poppinsMedium,
     fontWeight: "500",
-    fontSize: FontSize.sansBodyBodyCopy_size,
+    fontSize: FontSize.headlines18Bold_size,
     textAlign: "left",
     color: Color.textColor,
     position: "absolute",

@@ -1,5 +1,5 @@
 import * as React from "react";
-import { Text, StyleSheet, View, Pressable } from "react-native";
+import { Text, StyleSheet, View, Pressable, ScrollView } from "react-native";
 import { Image } from "expo-image";
 import { StackNavigationProp } from "@react-navigation/stack";
 import { useNavigation, ParamListBase } from "@react-navigation/native";
@@ -10,6 +10,7 @@ const HomepageScrollingAnalytics = () => {
 
   return (
     <View style={styles.homepageScrollingAnalytics}>
+    <ScrollView contentContainerStyle={styles.scrollViewContent}>
       <View style={[styles.optimumGrowth, styles.updatesPosition]}>
         <View style={[styles.goals, styles.goalsSpaceBlock]}>
           <View>
@@ -383,6 +384,7 @@ const HomepageScrollingAnalytics = () => {
           </View>
         </View>
       </View>
+      </ScrollView>
     </View>
   );
 };
@@ -397,6 +399,9 @@ const styles = StyleSheet.create({
     backgroundColor: Color.universalWhite,
     position: "absolute",
     overflow: "hidden",
+  },
+  scrollViewContent: {
+    flexGrow: 1,
   },
   goalsSpaceBlock: {
     paddingRight: Padding.p_6xs,
@@ -870,7 +875,7 @@ const styles = StyleSheet.create({
   },
   settingsNavBarChild: {
     marginLeft: -132.5,
-    bottom: 8,
+    bottom: 13,
     left: "50%",
     width: 6,
     height: 6,
