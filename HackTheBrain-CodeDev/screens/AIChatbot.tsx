@@ -1,287 +1,409 @@
-import * as React from "react";
-import { Text, StyleSheet, Pressable, View } from "react-native";
-import { Image } from "expo-image";
-import { StackNavigationProp } from "@react-navigation/stack";
-import { useNavigation, ParamListBase } from "@react-navigation/native";
-import { FontSize, FontFamily, Color, Border, Padding } from "../GlobalStyles";
+import React, { useState } from 'react';
+import { View, StyleSheet, TextInput, ScrollView, Text, TouchableOpacity } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
+import { Appbar, Card } from 'react-native-paper';
+import OpenAI from "openai";
 
-const AIChatbot = () => {
-  const navigation = useNavigation<StackNavigationProp<ParamListBase>>();
+interface Memory {
+  shading_sunlight_status: ShadingSunlightStatus[];
+  irrigation_status: IrrigationStatus[];
+}
+
+interface ShadingSunlightStatus {
+  plotIndex: number;
+  status: string;
+  columns: ShadingSunlightColumn[];
+}
+
+interface ShadingSunlightColumn {
+  columnIndex: number;
+  isShadingOpen: boolean;
+  shadingStrength: number;
+  enableNotifications: boolean;
+}
+
+interface IrrigationStatus {
+  plotIndex: number;
+  status: string;
+  columns: IrrigationColumn[];
+}
+
+interface IrrigationColumn {
+  columnIndex: number;
+  waterQuantityPerSession: number;
+  frequency: number;
+  enableNotifications: boolean;
+}
+
+const openai = new OpenAI({
+  apiKey: 'type your api key here', //sk-proj-ydQW9xzVqNUlT1XKrSXkT3BlbkFJpOP8aOVzj9Rgno5PFEC2
+  dangerouslyAllowBrowser: true
+});
+
+const SocialScreen = (): JSX.Element => {
+  const memory: Memory = {
+    shading_sunlight_status: [
+      {
+        plotIndex: 1,
+        status: "Good",
+        columns: [
+          {
+            columnIndex: 1,
+            isShadingOpen: true,
+            shadingStrength: 70,
+            enableNotifications: true
+          },
+          {
+            columnIndex: 2,
+            isShadingOpen: false,
+            shadingStrength: 50,
+            enableNotifications: false
+          },
+          {
+            columnIndex: 3,
+            isShadingOpen: false,
+            shadingStrength: 50,
+            enableNotifications: true
+          }
+        ]
+      },
+      {
+        plotIndex: 2,
+        status: "In Progress",
+        columns: [
+          {
+            columnIndex: 1,
+            isShadingOpen: true,
+            shadingStrength: 70,
+            enableNotifications: true
+          },
+          {
+            columnIndex: 2,
+            isShadingOpen: false,
+            shadingStrength: 50,
+            enableNotifications: false
+          },
+          {
+            columnIndex: 3,
+            isShadingOpen: false,
+            shadingStrength: 50,
+            enableNotifications: true
+          }
+        ]
+      },
+      {
+        plotIndex: 3,
+        status: "Good",
+        columns: [
+          {
+            columnIndex: 1,
+            isShadingOpen: true,
+            shadingStrength: 70,
+            enableNotifications: true
+          },
+          {
+            columnIndex: 2,
+            isShadingOpen: false,
+            shadingStrength: 50,
+            enableNotifications: false
+          },
+          {
+            columnIndex: 3,
+            isShadingOpen: false,
+            shadingStrength: 50,
+            enableNotifications: true
+          }
+        ]
+      },
+      {
+        plotIndex: 4,
+        status: "Good",
+        columns: [
+          {
+            columnIndex: 1,
+            isShadingOpen: true,
+            shadingStrength: 70,
+            enableNotifications: true
+          },
+          {
+            columnIndex: 2,
+            isShadingOpen: false,
+            shadingStrength: 50,
+            enableNotifications: false
+          },
+          {
+            columnIndex: 3,
+            isShadingOpen: false,
+            shadingStrength: 50,
+            enableNotifications: true
+          }
+        ]
+      },
+      {
+        plotIndex: 5,
+        status: "Good",
+        columns: [
+          {
+            columnIndex: 1,
+            isShadingOpen: true,
+            shadingStrength: 70,
+            enableNotifications: true
+          },
+          {
+            columnIndex: 2,
+            isShadingOpen: false,
+            shadingStrength: 50,
+            enableNotifications: false
+          },
+          {
+            columnIndex: 3,
+            isShadingOpen: false,
+            shadingStrength: 50,
+            enableNotifications: true
+          }
+        ]
+      }
+    ],
+    irrigation_status: [
+      {
+        plotIndex: 1,
+        status: "Bad",
+        columns: [
+          {
+            columnIndex: 1,
+            waterQuantityPerSession: 20,
+            frequency: 10,
+            enableNotifications: true
+          },
+          {
+            columnIndex: 2,
+            waterQuantityPerSession: 25,
+            frequency: 7,
+            enableNotifications: false
+          },
+          {
+            columnIndex: 3,
+            waterQuantityPerSession: 20,
+            frequency: 10,
+            enableNotifications: true
+          }
+        ]
+      },
+      {
+        plotIndex: 2,
+        status: "In Progress",
+        columns: [
+          {
+            columnIndex: 1,
+            waterQuantityPerSession: 20,
+            frequency: 10,
+            enableNotifications: true
+          },
+          {
+            columnIndex: 2,
+            waterQuantityPerSession: 10,
+            frequency: 20,
+            enableNotifications: false
+          },
+          {
+            columnIndex: 3,
+            waterQuantityPerSession: 20,
+            frequency: 10,
+            enableNotifications: true
+          }
+        ]
+      },
+      {
+        plotIndex: 3,
+        status: "Maintenance",
+        columns: [
+          {
+            columnIndex: 1,
+            waterQuantityPerSession: 20,
+            frequency: 10,
+            enableNotifications: true
+          },
+          {
+            columnIndex: 2,
+            waterQuantityPerSession: 20,
+            frequency: 10,
+            enableNotifications: true
+          },
+          {
+            columnIndex: 3,
+            waterQuantityPerSession: 20,
+            frequency: 10,
+            enableNotifications: true
+          }
+        ]
+      },
+      {
+        plotIndex: 4,
+        status: "Good",
+        columns: [
+          {
+            columnIndex: 1,
+            waterQuantityPerSession: 20,
+            frequency: 10,
+            enableNotifications: true
+          },
+          {
+            columnIndex: 2,
+            waterQuantityPerSession: 20,
+            frequency: 10,
+            enableNotifications: false
+          },
+          {
+            columnIndex: 3,
+            waterQuantityPerSession: 20,
+            frequency: 10,
+            enableNotifications: true
+          }
+        ]
+      },
+      {
+        plotIndex: 5,
+        status: "In Progress",
+        columns: [
+          {
+            columnIndex: 1,
+            waterQuantityPerSession: 50,
+            frequency: 2,
+            enableNotifications: true
+          },
+          {
+            columnIndex: 2,
+            waterQuantityPerSession: 10,
+            frequency: 20,
+            enableNotifications: true
+          },
+          {
+            columnIndex: 3,
+            waterQuantityPerSession: 20,
+            frequency: 10,
+            enableNotifications: false
+          }
+        ]
+      }
+    ]
+  }
+  const [messages, setMessages] = useState<{ text: string, sender: string }[]>([{ text: 'Hi! How can I help you today?', sender: 'bot' }]);
+  const [inputText, setInputText] = useState<string>('');
+  const navigation = useNavigation();
+
+  const handleBackButton = () => {
+    navigation.goBack();
+  };
+
+  const sendMessage = async () => {
+    if (inputText.trim() === '') return;
+
+    const newMessages = [...messages, { text: inputText, sender: 'user' }];
+    setMessages(newMessages);
+    setInputText('');
+
+    const botReply = await generateBotResponse(inputText);
+    setMessages((prevMessages) => [...prevMessages, { text: botReply, sender: 'bot' }]);
+  };
+
+  const generateBotResponse = async (inputText: string): Promise<string> => {
+    try {
+      const memoryPrompt = `You are AgriSmart, an AI chatbot designed to assist farmers with smart agriculture solutions, focusing on mitigating climate change impacts through precision farming, resource optimization, and data analytics. Your role includes providing information, advice, and updates on various agricultural parameters based on the current state of the farm. Here are IMPORTANT DATA relating to your farm ${JSON.stringify(memory)}`;
+      const prompt = `${memoryPrompt} Now here is the question, answer it and remember your purpose and data: ${inputText}\nBot:`;
+
+      const completion = await openai.completions.create({
+        model: "gpt-3.5-turbo-instruct",
+        prompt: prompt,
+        temperature: 0,
+        max_tokens: 500,
+        top_p: 1,
+        frequency_penalty: 0,
+        presence_penalty: 0,
+      });
+
+      return completion.choices[0].text.trim()
+    } catch (error) {
+      console.error(error);
+      return 'I apologize, but there was an error processing your request. Please try again.';
+    }
+  };
 
   return (
-    <View style={[styles.aiChatbot, styles.iconLayout1]}>
-      <View style={[styles.frame, styles.frameLayout2]}>
-        <View style={[styles.frame1, styles.frameLayout2]}>
-          <Text style={styles.agrismartAi}>AgriSmart Ai</Text>
-          <View style={[styles.navigation, styles.navigationPosition]}>
-            <Text style={styles.search}>Chatbot</Text>
-            <Pressable
-              style={[styles.iconBackward, styles.iconLayout]}
-              onPress={() => navigation.navigate("AidMainPage")}
-            >
-              <Image
-                style={[styles.icon, styles.iconLayout1]}
-                contentFit="cover"
-                source={require("../assets/icon--backward.png")}
-              />
-            </Pressable>
-            <Image
-              style={[styles.iconCancel, styles.iconLayout]}
-              contentFit="cover"
-              source={require("../assets/icon--cancel.png")}
-            />
-          </View>
-          <Image
-            style={styles.image2Icon}
-            contentFit="cover"
-            source={require("../assets/image-2.png")}
-          />
-        </View>
-        <View style={[styles.frame2, styles.frameLayout1]}>
-          <View style={[styles.frameChild, styles.frameLayout1]} />
-        </View>
-      </View>
-      <View style={[styles.frame3, styles.framePosition]}>
-        <View style={styles.frame4}>
-          <View style={styles.chatleft}>
-            <Text style={[styles.hiJasonHow, styles.hiJasonHowTypo]}>
-              Hi HackerBrain1, how may i help you?
-            </Text>
-          </View>
-        </View>
-        <View style={[styles.frame5, styles.frameLayout]}>
-          <View style={[styles.frame6, styles.frameLayout]}>
-            <View
-              style={[styles.ableToCheckLightStatusParent, styles.frameLayout]}
-            >
-              <Text style={[styles.ableToCheck, styles.hiJasonHowTypo]}>
-                Able to check light status?
-              </Text>
-              <Pressable
-                style={[styles.materialSymbolsLightsendOu, styles.iconLayout]}
-                onPress={() => navigation.navigate("AIChatbotSent1")}
-              >
-                <Image
-                  style={[styles.icon, styles.iconLayout1]}
-                  contentFit="cover"
-                  source={require("../assets/materialsymbolslightsendoutline1.png")}
-                />
-              </Pressable>
-            </View>
-            <Image
-              style={[styles.buttonLargeIcon, styles.frameLayout]}
-              contentFit="cover"
-              source={require("../assets/button--large--icon.png")}
-            />
-          </View>
-        </View>
-        <View style={[styles.frame7, styles.frameLayout1]}>
-          <View style={[styles.frameChild, styles.frameLayout1]} />
-        </View>
+    <View style={styles.container}>
+      <Appbar.Header>
+        <Appbar.BackAction onPress={handleBackButton} />
+        <Appbar.Content title="AgriSmart AI ChatBot" />
+      </Appbar.Header>
+      <ScrollView style={styles.messagesContainer}>
+        {messages.map((message, index) => (
+          <Card key={index} style={message.sender === 'user' ? styles.userMessage : styles.botMessage}>
+            <Text>{message.text}</Text>
+          </Card>
+        ))}
+      </ScrollView>
+      <View style={styles.inputContainer}>
+        <TextInput
+          style={styles.input}
+          value={inputText}
+          onChangeText={setInputText}
+          placeholder="Type a message..."
+        />
+        <TouchableOpacity onPress={sendMessage} style={styles.sendButton}>
+          <Text style={styles.sendButtonText}>Send</Text>
+        </TouchableOpacity>
       </View>
     </View>
   );
 };
 
 const styles = StyleSheet.create({
-  iconLayout1: {
-    width: "100%",
-    overflow: "hidden",
-  },
-  frameLayout2: {
-    width: 343,
-    overflow: "hidden",
-  },
-  navigationPosition: {
-    width: 327,
-    left: 16,
-    top: 0,
-  },
-  iconLayout: {
-    height: 24,
-    width: 24,
-    position: "absolute",
-  },
-  frameLayout1: {
-    height: 2,
-    position: "absolute",
-  },
-  framePosition: {
-    left: 8,
-    position: "absolute",
-  },
-  hiJasonHowTypo: {
-    fontSize: FontSize.sansBodyBodyCopy_size,
-    fontFamily: FontFamily.poppinsMedium,
-    fontWeight: "500",
-    textAlign: "left",
-    lineHeight: 24,
-  },
-  frameLayout: {
-    height: 48,
-    position: "absolute",
-    overflow: "hidden",
-  },
-  agrismartAi: {
-    top: 48,
-    left: 113,
-    fontSize: FontSize.typographyBody2_size,
-    fontWeight: "700",
-    fontFamily: FontFamily.poppinsBold,
-    textAlign: "left",
-    lineHeight: 24,
-    color: Color.textColor,
-    position: "absolute",
-  },
-  search: {
-    marginTop: -14,
-    marginLeft: -36.5,
-    fontSize: FontSize.headlines18Bold_size,
-    lineHeight: 28,
-    textAlign: "center",
-    fontFamily: FontFamily.poppinsMedium,
-    fontWeight: "500",
-    left: "50%",
-    top: "50%",
-    color: Color.textColor,
-    position: "absolute",
-  },
-  icon: {
-    height: "100%",
-    overflow: "hidden",
-  },
-  iconBackward: {
-    top: 2,
-    left: 0,
-  },
-  iconCancel: {
-    marginTop: -12,
-    marginLeft: 139.5,
-    display: "none",
-    left: "50%",
-    top: "50%",
-    width: 24,
-    overflow: "hidden",
-  },
-  navigation: {
-    height: 28,
-    position: "absolute",
-  },
-  image2Icon: {
-    top: 28,
-    width: 100,
-    height: 74,
-    left: 0,
-    position: "absolute",
-  },
-  frame1: {
-    height: 102,
-    left: 0,
-    top: 0,
-    position: "absolute",
-  },
-  frameChild: {
-    borderRadius: Border.br_9xs,
-    width: 327,
-    left: 16,
-    top: 0,
-  },
-  frame2: {
-    top: 124,
-    left: 0,
-    width: 343,
-    overflow: "hidden",
-  },
-  frame: {
-    top: 60,
-    height: 126,
-    left: 8,
-    position: "absolute",
-  },
-  hiJasonHow: {
-    color: Color.textColor,
-    fontSize: FontSize.sansBodyBodyCopy_size,
-  },
-  chatleft: {
-    borderTopLeftRadius: Border.br_base,
-    borderTopRightRadius: Border.br_base,
-    borderBottomRightRadius: Border.br_base,
-    borderBottomLeftRadius: Border.br_9xs,
-    backgroundColor: Color.neutral3,
-    flexDirection: "row",
-    alignItems: "center",
-    padding: Padding.p_base,
-    left: 16,
-    top: 0,
-    position: "absolute",
-  },
-  frame4: {
-    width: 345,
-    height: 56,
-    left: 0,
-    top: 0,
-    position: "absolute",
-    overflow: "hidden",
-  },
-  ableToCheck: {
-    top: 14,
-    color: Color.universalBlack,
-    left: 16,
-    position: "absolute",
-  },
-  materialSymbolsLightsendOu: {
-    left: 239,
-    top: 10,
-  },
-  ableToCheckLightStatusParent: {
-    shadowColor: "rgba(0, 0, 0, 0.08)",
-    shadowOffset: {
-      width: 0,
-      height: 1,
-    },
-    shadowRadius: 8,
-    elevation: 8,
-    shadowOpacity: 1,
-    borderRadius: Border.br_base,
-    width: 263,
-    left: 0,
-    top: 0,
-    backgroundColor: Color.universalWhite,
-  },
-  buttonLargeIcon: {
-    right: 0,
-    borderRadius: Border.br_xs,
-    width: 48,
-    top: 0,
-  },
-  frame6: {
-    width: 332,
-    left: 16,
-    top: 0,
-  },
-  frame5: {
-    top: 578,
-    width: 348,
-    left: 0,
-  },
-  frame7: {
-    top: 560,
-    left: 0,
-    width: 343,
-    overflow: "hidden",
-  },
-  frame3: {
-    top: 210,
-    height: 641,
-    width: 348,
-    overflow: "hidden",
-  },
-  aiChatbot: {
+  container: {
     flex: 1,
-    height: 851,
-    overflow: "hidden",
-    backgroundColor: Color.universalWhite,
+    backgroundColor: 'lightblue',
+  },
+  messagesContainer: {
+    flex: 1,
+    padding: 15,
+  },
+  userMessage: {
+    backgroundColor: '#DCF8C6',
+    alignSelf: 'flex-end',
+    marginBottom: 10,
+    padding: 20,
+    borderRadius: 10,
+  },
+  botMessage: {
+    backgroundColor: '#F1F0F0',
+    alignSelf: 'flex-start',
+    marginBottom: 10,
+    padding: 15,
+    borderRadius: 10,
+  },
+  inputContainer: {
+    flexDirection: 'row',
+    padding: 15,
+    borderTopWidth: 3,
+    borderColor: 'black',
+    backgroundColor: 'lightgray',
+  },
+  input: {
+    flex: 1,
+    borderWidth: 2,
+    borderColor: 'black',
+    borderRadius: 10,
+    padding: 10,
+  },
+  sendButton: {
+    marginLeft: 10,
+    alignItems: 'center',
+    justifyContent: 'center',
+    backgroundColor: 'green',
+    paddingHorizontal: 20,
+    borderRadius: 10,
+  },
+  sendButtonText: {
+    color: '#fff',
   },
 });
 
-export default AIChatbot;
+export default SocialScreen;
