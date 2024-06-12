@@ -1,0 +1,122 @@
+[
+  {
+    "plotIndex": 1,
+    "status": "Good",
+    "columns": [
+      {
+        "columnIndex": 1,
+        "isShadingOpen": false,
+        "shadingStrength": 20,
+        "enableNotifications": true
+      },
+      {
+        "columnIndex": 2,
+        "isShadingOpen": false,
+        "shadingStrength": 50,
+        "enableNotifications": false
+      },
+      {
+        "columnIndex": 3,
+        "isShadingOpen": false,
+        "shadingStrength": 10,
+        "enableNotifications": true
+      }
+    ]
+  },
+  {
+    "plotIndex": 2,
+    "status": "In Progress",
+    "columns": [
+      {
+        "columnIndex": 1,
+        "isShadingOpen": false,
+        "shadingStrength": 70,
+        "enableNotifications": true
+      },
+      {
+        "columnIndex": 2,
+        "isShadingOpen": false,
+        "shadingStrength": 50,
+        "enableNotifications": false
+      },
+      {
+        "columnIndex": 3,
+        "isShadingOpen": false,
+        "shadingStrength": 50,
+        "enableNotifications": true
+      }
+    ]
+  },
+  {
+    "plotIndex": 3,
+    "status": "Good",
+    "columns": [
+      {
+        "columnIndex": 1,
+        "isShadingOpen": false,
+        "shadingStrength": 70,
+        "enableNotifications": true
+      },
+      {
+        "columnIndex": 2,
+        "isShadingOpen": false,
+        "shadingStrength": 50,
+        "enableNotifications": false
+      },
+      {
+        "columnIndex": 3,
+        "isShadingOpen": false,
+        "shadingStrength": 50,
+        "enableNotifications": true
+      }
+    ]
+  },
+  {
+    "plotIndex": 4,
+    "status": "Good",
+    "columns": [
+      {
+        "columnIndex": 1,
+        "isShadingOpen": true,
+        "shadingStrength": 70,
+        "enableNotifications": true
+      },
+      {
+        "columnIndex": 2,
+        "isShadingOpen": false,
+        "shadingStrength": 50,
+        "enableNotifications": false
+      },
+      {
+        "columnIndex": 3,
+        "isShadingOpen": false,
+        "shadingStrength": 50,
+        "enableNotifications": true
+      }
+    ]
+  },
+  {
+    "plotIndex": 5,
+    "status": "Good",
+    "columns": [
+      {
+        "columnIndex": 1,
+        "isShadingOpen": true,
+        "shadingStrength": 70,
+        "enableNotifications": true
+      },
+      {
+        "columnIndex": 2,
+        "isShadingOpen": false,
+        "shadingStrength": 50,
+        "enableNotifications": false
+      },
+      {
+        "columnIndex": 3,
+        "isShadingOpen": false,
+        "shadingStrength": 50,
+        "enableNotifications": true
+      }
+    ]
+  }
+]
