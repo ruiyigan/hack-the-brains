@@ -43,8 +43,334 @@ const openai = new OpenAI({
 
 const SocialScreen = (): JSX.Element => {
   const memory: Memory = {
-    shading_sunlight_status: [],
-    irrigation_status: []
+    shading_sunlight_status: [
+      {
+        "plotIndex": 1,
+        "status": "Good",
+        "columns": [
+          {
+            "columnIndex": 1,
+            "isShadingOpen": true,
+            "shadingStrength": 70,
+            "enableNotifications": true
+          },
+          {
+            "columnIndex": 2,
+            "isShadingOpen": false,
+            "shadingStrength": 50,
+            "enableNotifications": false
+          },
+          {
+            "columnIndex": 3,
+            "isShadingOpen": false,
+            "shadingStrength": 50,
+            "enableNotifications": true
+          },
+          {
+            "columnIndex": 4,
+            "isShadingOpen": false,
+            "shadingStrength": 50,
+            "enableNotifications": true
+          },
+          {
+            "columnIndex": 5,
+            "isShadingOpen": false,
+            "shadingStrength": 50,
+            "enableNotifications": true
+          }
+        ]
+      },
+      {
+        "plotIndex": 2,
+        "status": "In Progress",
+        "columns": [
+          {
+            "columnIndex": 1,
+            "isShadingOpen": true,
+            "shadingStrength": 70,
+            "enableNotifications": true
+          },
+          {
+            "columnIndex": 2,
+            "isShadingOpen": false,
+            "shadingStrength": 50,
+            "enableNotifications": false
+          },
+          {
+            "columnIndex": 3,
+            "isShadingOpen": false,
+            "shadingStrength": 50,
+            "enableNotifications": true
+          },
+          {
+            "columnIndex": 4,
+            "isShadingOpen": false,
+            "shadingStrength": 50,
+            "enableNotifications": true
+          },
+          {
+            "columnIndex": 5,
+            "isShadingOpen": false,
+            "shadingStrength": 50,
+            "enableNotifications": true
+          }
+        ]
+      },
+      {
+        "plotIndex": 3,
+        "status": "Good",
+        "columns": [
+          {
+            "columnIndex": 1,
+            "isShadingOpen": true,
+            "shadingStrength": 70,
+            "enableNotifications": true
+          },
+          {
+            "columnIndex": 2,
+            "isShadingOpen": false,
+            "shadingStrength": 50,
+            "enableNotifications": false
+          },
+          {
+            "columnIndex": 3,
+            "isShadingOpen": false,
+            "shadingStrength": 50,
+            "enableNotifications": true
+          },
+          {
+            "columnIndex": 4,
+            "isShadingOpen": false,
+            "shadingStrength": 50,
+            "enableNotifications": true
+          },
+          {
+            "columnIndex": 5,
+            "isShadingOpen": false,
+            "shadingStrength": 50,
+            "enableNotifications": true
+          }
+        ]
+      },
+      {
+        "plotIndex": 4,
+        "status": "Good",
+        "columns": [
+          {
+            "columnIndex": 1,
+            "isShadingOpen": true,
+            "shadingStrength": 70,
+            "enableNotifications": true
+          },
+          {
+            "columnIndex": 2,
+            "isShadingOpen": false,
+            "shadingStrength": 50,
+            "enableNotifications": false
+          },
+          {
+            "columnIndex": 3,
+            "isShadingOpen": false,
+            "shadingStrength": 50,
+            "enableNotifications": true
+          },
+          {
+            "columnIndex": 4,
+            "isShadingOpen": false,
+            "shadingStrength": 50,
+            "enableNotifications": true
+          },
+          {
+            "columnIndex": 5,
+            "isShadingOpen": false,
+            "shadingStrength": 50,
+            "enableNotifications": true
+          }
+        ]
+      },
+      {
+        "plotIndex": 5,
+        "status": "Good",
+        "columns": [
+          {
+            "columnIndex": 1,
+            "isShadingOpen": true,
+            "shadingStrength": 70,
+            "enableNotifications": true
+          },
+          {
+            "columnIndex": 2,
+            "isShadingOpen": false,
+            "shadingStrength": 50,
+            "enableNotifications": false
+          },
+          {
+            "columnIndex": 3,
+            "isShadingOpen": false,
+            "shadingStrength": 50,
+            "enableNotifications": true
+          },
+          {
+            "columnIndex": 4,
+            "isShadingOpen": false,
+            "shadingStrength": 50,
+            "enableNotifications": true
+          },
+          {
+            "columnIndex": 5,
+            "isShadingOpen": false,
+            "shadingStrength": 50,
+            "enableNotifications": true
+          }
+        ]
+      }
+    ],
+    irrigation_status: [
+      {
+        "plotIndex": 1,
+        "status": "Poor",
+        "columns": [
+          {
+            "columnIndex": 1,
+            "waterQuantityPerSession": 100,
+            "frequency": 20,
+            "enableNotifications": true
+          },
+          {
+            "columnIndex": 2,
+            "waterQuantityPerSession": 70,
+            "frequency": 10,
+            "enableNotifications": false
+          },
+          {
+            "columnIndex": 3,
+            "waterQuantityPerSession": 30,
+            "frequency": 20,
+            "enableNotifications": true
+          },
+          {
+            "columnIndex": 4,
+            "waterQuantityPerSession": 90,
+            "frequency": 20,
+            "enableNotifications": false
+          },
+          {
+            "columnIndex": 5,
+            "waterQuantityPerSession": 60,
+            "frequency": 25,
+            "enableNotifications": false
+          }
+        ]
+      },
+      {
+        "plotIndex": 2,
+        "status": "In Progress",
+        "columns": [
+          {
+            "columnIndex": 1,
+            "waterQuantityPerSession": 100,
+            "frequency": 20,
+            "enableNotifications": true
+          },
+          {
+            "columnIndex": 2,
+            "waterQuantityPerSession": 70,
+            "frequency": 10,
+            "enableNotifications": false
+          },
+          {
+            "columnIndex": 3,
+            "waterQuantityPerSession": 30,
+            "frequency": 20,
+            "enableNotifications": true
+          },
+          {
+            "columnIndex": 4,
+            "waterQuantityPerSession": 90,
+            "frequency": 20,
+            "enableNotifications": false
+          },
+          {
+            "columnIndex": 5,
+            "waterQuantityPerSession": 60,
+            "frequency": 25,
+            "enableNotifications": false
+          }
+        ]
+      },
+      {
+        "plotIndex": 4,
+        "status": "Maintenance",
+        "columns": [
+          {
+            "columnIndex": 1,
+            "waterQuantityPerSession": 100,
+            "frequency": 20,
+            "enableNotifications": true
+          },
+          {
+            "columnIndex": 2,
+            "waterQuantityPerSession": 70,
+            "frequency": 10,
+            "enableNotifications": false
+          },
+          {
+            "columnIndex": 3,
+            "waterQuantityPerSession": 30,
+            "frequency": 20,
+            "enableNotifications": true
+          },
+          {
+            "columnIndex": 4,
+            "waterQuantityPerSession": 90,
+            "frequency": 20,
+            "enableNotifications": false
+          },
+          {
+            "columnIndex": 5,
+            "waterQuantityPerSession": 60,
+            "frequency": 25,
+            "enableNotifications": false
+          }
+        ]
+      },
+      {
+        "plotIndex": 5,
+        "status": "Good",
+        "columns": [
+          {
+            "columnIndex": 1,
+            "waterQuantityPerSession": 100,
+            "frequency": 20,
+            "enableNotifications": true
+          },
+          {
+            "columnIndex": 2,
+            "waterQuantityPerSession": 70,
+            "frequency": 10,
+            "enableNotifications": false
+          },
+          {
+            "columnIndex": 3,
+            "waterQuantityPerSession": 30,
+            "frequency": 20,
+            "enableNotifications": true
+          },
+          {
+            "columnIndex": 4,
+            "waterQuantityPerSession": 90,
+            "frequency": 20,
+            "enableNotifications": false
+          },
+          {
+            "columnIndex": 5,
+            "waterQuantityPerSession": 60,
+            "frequency": 25,
+            "enableNotifications": false
+          }
+        ]
+      }
+    ]
   };
 
   const [messages, setMessages] = useState<{ text: string, sender: string }[]>([{ text: 'Hi! How can I help you today?', sender: 'bot' }]);
