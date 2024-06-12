@@ -998,7 +998,7 @@ const styles = StyleSheet.create({
     position: "absolute",
   },
   vectorPosition: {
-    bottom: 17,
+    bottom: 23,
     position: "absolute",
   },
   iconLayout: {
@@ -1514,24 +1514,24 @@ const styles = StyleSheet.create({
     width: "100%",
   },
   vector: {
-    left: "33.48%",
-    right: "61.12%",
+    left: "35.09%",
+    right: "59.51%",
     width: "5.4%",
     height: 20,
   },
   iconSettings: {
-    bottom: 24,
-    left: 287,
+    bottom: 19,
+    left: 283,
     height: 24,
     overflow: "hidden",
   },
   vectorIcon: {
     width: "5.43%",
-    right: "36.38%",
-    left: "58.19%",
+    right: "34.77%",
+    left: "59.8%",
     height: 18,
-    maxWidth: "100%",
-    overflow: "hidden",
+    bottom: 32,
+    position: "absolute",
   },
   cocoboldhomeIcon: {
     bottom: 25,

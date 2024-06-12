@@ -27,8 +27,7 @@ const OnBoarding = () => {
           style={[styles.gainValuableInsights, styles.analyticsAndReportsTypo]}
         >
           Gain valuable insights through detailed analytics and reports. Track
-          performance, predict future trends, and make data-driven decisions to
-          optimize your farming practices.
+          performance, predict future trends, and make data-driven decisions.
         </Text>
       </View>
       <View style={[styles.text, styles.textFlexBox]}>
