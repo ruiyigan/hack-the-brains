@@ -28,8 +28,7 @@ const OnBoarding2 = () => {
           </Text>
           <Text style={[styles.monitorYourCrops, styles.tapAnywhereForTypo]}>
             Monitor your crops in real-time using advanced imaging and sensor
-            technology. Ensure healthy growth and quickly address any issues
-            with precision agriculture tools.
+            technology.
           </Text>
         </View>
         <View style={[styles.action, styles.groupPosition]}>

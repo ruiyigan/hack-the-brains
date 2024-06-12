@@ -33,7 +33,7 @@ const OnBoarding3 = () => {
           >
             Efficiently manage your farm's water usage with real-time sensor
             data and automated irrigation schedules. Save resources and ensure
-            optimal growth conditions for your crops.
+            optimal growth.
           </Text>
         </View>
         <View style={[styles.action, styles.groupPosition]}>
