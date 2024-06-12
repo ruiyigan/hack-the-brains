@@ -28,7 +28,7 @@ const Notification1 = () => {
           </Text>
         </View>
       </View>
-      <Text style={[styles.title, styles.titleTypo]}>Yesterday</Text>
+      <Text style={[styles.title, styles.titleTypo]}>2 hours ago</Text>
       <View style={[styles.frame1, styles.framePosition]}>
         <Image
           style={styles.spacerLayout}
@@ -46,7 +46,7 @@ const Notification1 = () => {
       </View>
       <View style={styles.sectionHeader}>
         <View style={styles.container}>
-          <Text style={styles.titleTypo}>Today</Text>
+          <Text style={styles.titleTypo}>Now</Text>
         </View>
         <View style={styles.buttons}>
           <View style={styles.contentContainer}>
