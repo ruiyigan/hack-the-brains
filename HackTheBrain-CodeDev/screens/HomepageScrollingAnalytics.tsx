@@ -361,8 +361,7 @@ const HomepageScrollingAnalytics = () => {
                       >
                         <Text
                           style={[styles.label5, styles.labelTypo]}
-                        >{`Analytics &
-report`}</Text>
+                        >{`Analytics`}</Text>
                       </View>
                       <View style={styles.trailingIcon5}>
                         <Image
@@ -1285,8 +1284,8 @@ const styles = StyleSheet.create({
     position: "absolute",
   },
   materialSymbolsoverviewOutlIcon: {
-    top: 11,
-    left: 18,
+    top: 12,
+    left: 12,
     width: 24,
     height: 24,
     position: "absolute",

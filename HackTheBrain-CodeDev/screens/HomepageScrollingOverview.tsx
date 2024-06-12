@@ -5,6 +5,7 @@ import {
   View,
   Pressable,
   TouchableHighlight,
+  ScrollView
 } from "react-native";
 import { Image } from "expo-image";
 import { LinearGradient } from "expo-linear-gradient";
@@ -17,6 +18,7 @@ const HomepageScrollingOverview = () => {
 
   return (
     <View style={styles.homepageScrollingOverview}>
+      <ScrollView contentContainerStyle={styles.scrollViewContent}>
       <View style={[styles.airMoistureAndTemperature, styles.viewSpaceBlock]}>
         <View style={[styles.goals, styles.goalsSpaceBlock]}>
           <View>
@@ -582,8 +584,7 @@ const HomepageScrollingOverview = () => {
                       >
                         <Text
                           style={[styles.label16, styles.labelTypo]}
-                        >{`Analytics &
-report`}</Text>
+                        >{`Analytics`}</Text>
                       </View>
                       <View style={styles.trailingIcon5}>
                         <Image
@@ -737,6 +738,7 @@ report`}</Text>
           </View>
         </View>
       </View>
+      </ScrollView>
     </View>
   );
 };
@@ -745,6 +747,9 @@ const styles = StyleSheet.create({
   viewSpaceBlock: {
     paddingBottom: Padding.p_3xs,
     paddingTop: Padding.p_3xs,
+  },
+  scrollViewContent: {
+    flexGrow: 1,
   },
   goalsSpaceBlock: {
     paddingRight: Padding.p_6xs,
@@ -993,7 +998,7 @@ const styles = StyleSheet.create({
     position: "absolute",
   },
   vectorPosition: {
-    bottom: 27,
+    bottom: 17,
     position: "absolute",
   },
   iconLayout: {
@@ -1639,8 +1644,8 @@ const styles = StyleSheet.create({
     width: 327,
   },
   materialSymbolsoverviewOutlIcon: {
-    top: 11,
-    left: 18,
+    top: 12,
+    left: 12,
     width: 24,
     height: 24,
     position: "absolute",

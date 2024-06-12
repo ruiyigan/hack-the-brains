@@ -34,6 +34,7 @@ import ControlIrrigationPlot2Colu2 from "./screens/ControlIrrigationPlot2Colu2";
 
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { View, Text, Pressable, TouchableOpacity } from "react-native";
+import { NativeBaseProvider } from "native-base";
 
 const App = () => {
   const [hideSplashScreen, setHideSplashScreen] = React.useState(true);
@@ -57,157 +58,159 @@ const App = () => {
 
   return (
     <>
-      <NavigationContainer>
-        {hideSplashScreen ? (
-          <Stack.Navigator screenOptions={{ headerShown: false }}>
-            <Stack.Screen
-              name="AppLogo"
-              component={AppLogo}
-              options={{ headerShown: false }}
-            />
-            <Stack.Screen
-              name="HomepageScrollingAnalytics"
-              component={HomepageScrollingAnalytics}
-              options={{ headerShown: false }}
-            />
-            <Stack.Screen
-              name="AIChatbot"
-              component={AIChatbot}
-              options={{ headerShown: false }}
-            />
-            <Stack.Screen
-              name="SocialForum"
-              component={SocialForum}
-              options={{ headerShown: false }}
-            />
-            <Stack.Screen
-              name="AidMainPage"
-              component={AidMainPage}
-              options={{ headerShown: false }}
-            />
-            <Stack.Screen
-              name="SettingsEditedSuccessfully"
-              component={SettingsEditedSuccessfully}
-              options={{ headerShown: false }}
-            />
-            <Stack.Screen
-              name="Settings"
-              component={Settings}
-              options={{ headerShown: false }}
-            />
-            <Stack.Screen
-              name="Settings1"
-              component={Settings1}
-              options={{ headerShown: false }}
-            />
-            <Stack.Screen
-              name="SearchFeature"
-              component={SearchFeature}
-              options={{ headerShown: false }}
-            />
-            <Stack.Screen
-              name="NotificationCleared"
-              component={NotificationCleared}
-              options={{ headerShown: false }}
-            />
-            <Stack.Screen
-              name="Notification1"
-              component={Notification1}
-              options={{ headerShown: false }}
-            />
-            <Stack.Screen
-              name="HomepageScrollingOverview"
-              component={HomepageScrollingOverview}
-              options={{ headerShown: false }}
-            />
-            <Stack.Screen
-              name="PasswordResetSuccess"
-              component={PasswordResetSuccess}
-              options={{ headerShown: false }}
-            />
-            <Stack.Screen
-              name="ForgotPassword"
-              component={ForgotPassword}
-              options={{ headerShown: false }}
-            />
-            <Stack.Screen
-              name="ForgotPasswordConcealed"
-              component={ForgotPasswordConcealed}
-              options={{ headerShown: false }}
-            />
-            <Stack.Screen
-              name="SignInWithGmail"
-              component={SignInWithGmail}
-              options={{ headerShown: false }}
-            />
-            <Stack.Screen
-              name="SignInWithOutlook"
-              component={SignInWithOutlook}
-              options={{ headerShown: false }}
-            />
-            <Stack.Screen
-              name="SignInWithFacebook"
-              component={SignInWithFacebook}
-              options={{ headerShown: false }}
-            />
-            <Stack.Screen
-              name="SignInPasswordHidden"
-              component={SignInPasswordHidden}
-              options={{ headerShown: false }}
-            />
-            <Stack.Screen
-              name="OnBoarding"
-              component={OnBoarding}
-              options={{ headerShown: false }}
-            />
-            <Stack.Screen
-              name="OnBoarding1"
-              component={OnBoarding1}
-              options={{ headerShown: false }}
-            />
-            <Stack.Screen
-              name="OnBoarding2"
-              component={OnBoarding2}
-              options={{ headerShown: false }}
-            />
-            <Stack.Screen
-              name="OnBoarding3"
-              component={OnBoarding3}
-              options={{ headerShown: false }}
-            />
-            <Stack.Screen
-              name="SignUpPasswordConcealed"
-              component={SignUpPasswordConcealed}
-              options={{ headerShown: false }}
-            />
-            <Stack.Screen
-              name="SignUpPassword"
-              component={SignUpPassword}
-              options={{ headerShown: false }}
-            />
-            <Stack.Screen
-              name="AccountRegisteredSuccessfull"
-              component={AccountRegisteredSuccessfull}
-              options={{ headerShown: false }}
-            />
-            <Stack.Screen
-              name="ControlIrrigationPlot2Colu"
-              component={ControlIrrigationPlot2Colu}
-              options={{ headerShown: false }}
-            />
-            <Stack.Screen
-              name="ControlIrrigationPlot2Colu1"
-              component={ControlIrrigationPlot2Colu1}
-              options={{ headerShown: false }}
-            />
-            <Stack.Screen
-              name="ControlIrrigationPlot2Colu2"
-              component={ControlIrrigationPlot2Colu2}
-              options={{ headerShown: false }}
-            />
-          </Stack.Navigator>
-        ) : null}
-      </NavigationContainer>
+      <NativeBaseProvider>
+        <NavigationContainer>
+          {hideSplashScreen ? (
+            <Stack.Navigator screenOptions={{ headerShown: false }}>
+              <Stack.Screen
+                name="AppLogo"
+                component={AppLogo}
+                options={{ headerShown: false }}
+              />
+              <Stack.Screen
+                name="HomepageScrollingAnalytics"
+                component={HomepageScrollingAnalytics}
+                options={{ headerShown: false }}
+              />
+              <Stack.Screen
+                name="AIChatbot"
+                component={AIChatbot}
+                options={{ headerShown: false }}
+              />
+              <Stack.Screen
+                name="SocialForum"
+                component={SocialForum}
+                options={{ headerShown: false }}
+              />
+              <Stack.Screen
+                name="AidMainPage"
+                component={AidMainPage}
+                options={{ headerShown: false }}
+              />
+              <Stack.Screen
+                name="SettingsEditedSuccessfully"
+                component={SettingsEditedSuccessfully}
+                options={{ headerShown: false }}
+              />
+              <Stack.Screen
+                name="Settings"
+                component={Settings}
+                options={{ headerShown: false }}
+              />
+              <Stack.Screen
+                name="Settings1"
+                component={Settings1}
+                options={{ headerShown: false }}
+              />
+              <Stack.Screen
+                name="SearchFeature"
+                component={SearchFeature}
+                options={{ headerShown: false }}
+              />
+              <Stack.Screen
+                name="NotificationCleared"
+                component={NotificationCleared}
+                options={{ headerShown: false }}
+              />
+              <Stack.Screen
+                name="Notification1"
+                component={Notification1}
+                options={{ headerShown: false }}
+              />
+              <Stack.Screen
+                name="HomepageScrollingOverview"
+                component={HomepageScrollingOverview}
+                options={{ headerShown: false }}
+              />
+              <Stack.Screen
+                name="PasswordResetSuccess"
+                component={PasswordResetSuccess}
+                options={{ headerShown: false }}
+              />
+              <Stack.Screen
+                name="ForgotPassword"
+                component={ForgotPassword}
+                options={{ headerShown: false }}
+              />
+              <Stack.Screen
+                name="ForgotPasswordConcealed"
+                component={ForgotPasswordConcealed}
+                options={{ headerShown: false }}
+              />
+              <Stack.Screen
+                name="SignInWithGmail"
+                component={SignInWithGmail}
+                options={{ headerShown: false }}
+              />
+              <Stack.Screen
+                name="SignInWithOutlook"
+                component={SignInWithOutlook}
+                options={{ headerShown: false }}
+              />
+              <Stack.Screen
+                name="SignInWithFacebook"
+                component={SignInWithFacebook}
+                options={{ headerShown: false }}
+              />
+              <Stack.Screen
+                name="SignInPasswordHidden"
+                component={SignInPasswordHidden}
+                options={{ headerShown: false }}
+              />
+              <Stack.Screen
+                name="OnBoarding"
+                component={OnBoarding}
+                options={{ headerShown: false }}
+              />
+              <Stack.Screen
+                name="OnBoarding1"
+                component={OnBoarding1}
+                options={{ headerShown: false }}
+              />
+              <Stack.Screen
+                name="OnBoarding2"
+                component={OnBoarding2}
+                options={{ headerShown: false }}
+              />
+              <Stack.Screen
+                name="OnBoarding3"
+                component={OnBoarding3}
+                options={{ headerShown: false }}
+              />
+              <Stack.Screen
+                name="SignUpPasswordConcealed"
+                component={SignUpPasswordConcealed}
+                options={{ headerShown: false }}
+              />
+              <Stack.Screen
+                name="SignUpPassword"
+                component={SignUpPassword}
+                options={{ headerShown: false }}
+              />
+              <Stack.Screen
+                name="AccountRegisteredSuccessfull"
+                component={AccountRegisteredSuccessfull}
+                options={{ headerShown: false }}
+              />
+              <Stack.Screen
+                name="ControlIrrigationPlot2Colu"
+                component={ControlIrrigationPlot2Colu}
+                options={{ headerShown: false }}
+              />
+              <Stack.Screen
+                name="ControlIrrigationPlot2Colu1"
+                component={ControlIrrigationPlot2Colu1}
+                options={{ headerShown: false }}
+              />
+              <Stack.Screen
+                name="ControlIrrigationPlot2Colu2"
+                component={ControlIrrigationPlot2Colu2}
+                options={{ headerShown: false }}
+              />
+            </Stack.Navigator>
+          ) : null}
+        </NavigationContainer>
+      </NativeBaseProvider>
     </>
   );
 };

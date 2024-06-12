@@ -2,8 +2,8 @@ import React, { useState } from 'react';
 import { View, StyleSheet, TextInput, ScrollView, Text, TouchableOpacity } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { Appbar, Card } from 'react-native-paper';
-import OpenAI from "openai";
-import { OPENAI_API_KEY } from '@env'; // Import the API key from the .env file
+import OpenAI from 'openai';
+import { OPENAI_API_KEY } from '@env'; // Ensure this import works
 
 interface Memory {
   shading_sunlight_status: ShadingSunlightStatus[];
@@ -37,67 +37,15 @@ interface IrrigationColumn {
 }
 
 const openai = new OpenAI({
-  apiKey: OPENAI_API_KEY, // Use the imported API key
+  apiKey: OPENAI_API_KEY, // Ensure this uses the correct key
   dangerouslyAllowBrowser: true
 });
 
 const SocialScreen = (): JSX.Element => {
   const memory: Memory = {
-    shading_sunlight_status: [
-      {
-        plotIndex: 1,
-        status: "Good",
-        columns: [
-          {
-            columnIndex: 1,
-            isShadingOpen: true,
-            shadingStrength: 70,
-            enableNotifications: true
-          },
-          {
-            columnIndex: 2,
-            isShadingOpen: false,
-            shadingStrength: 50,
-            enableNotifications: false
-          },
-          {
-            columnIndex: 3,
-            isShadingOpen: false,
-            shadingStrength: 50,
-            enableNotifications: true
-          }
-        ]
-      },
-      // Add more shading_sunlight_status data as needed
-    ],
-    irrigation_status: [
-      {
-        plotIndex: 1,
-        status: "Bad",
-        columns: [
-          {
-            columnIndex: 1,
-            waterQuantityPerSession: 20,
-            frequency: 10,
-            enableNotifications: true
-          },
-          {
-            columnIndex: 2,
-            waterQuantityPerSession: 25,
-            frequency: 7,
-            enableNotifications: false
-          },
-          {
-            columnIndex: 3,
-            waterQuantityPerSession: 20,
-            frequency: 10,
-            enableNotifications: true
-          }
-        ]
-      },
-      // Add more irrigation_status data as needed
-    ]
-  }
+    shading_sunlight_status: [],
+    irrigation_status: []
+  };
 
   const [messages, setMessages] = useState<{ text: string, sender: string }[]>([{ text: 'Hi! How can I help you today?', sender: 'bot' }]);
   const [inputText, setInputText] = useState<string>('');
