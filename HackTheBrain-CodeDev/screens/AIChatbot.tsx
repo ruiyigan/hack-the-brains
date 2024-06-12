@@ -37,11 +37,7 @@ interface IrrigationColumn {
 }
 
 const openai = new OpenAI({
-<<<<<<< HEAD
-  apiKey: 'sk-proj-ydQW9xzVqNUlT1XKrSXkT3BlbkFJpOP8aOVzj9Rgno5PFEC2', //sk-proj-ydQW9xzVqNUlT1XKrSXkT3BlbkFJpOP8aOVzj9Rgno5PFEC2
-=======
   apiKey: OPENAI_API_KEY, // Use the imported API key
->>>>>>> 105492c (updated .env)
   dangerouslyAllowBrowser: true
 });
 
