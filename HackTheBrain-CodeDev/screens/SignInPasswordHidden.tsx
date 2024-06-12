@@ -1,24 +1,46 @@
-import * as React from "react";
+import React, { useState } from "react";
 import {
   Text,
   StyleSheet,
   View,
   Pressable,
-  TouchableHighlight,
+  TextInput,
+  Alert,
 } from "react-native";
 import { Image } from "expo-image";
 import { StackNavigationProp } from "@react-navigation/stack";
 import { useNavigation, ParamListBase } from "@react-navigation/native";
 import { Border, FontFamily, FontSize, Color, Padding } from "../GlobalStyles";
 
-const SignInPasswordHidden = () => {
+const SignIn = () => {
   const navigation = useNavigation<StackNavigationProp<ParamListBase>>();
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
+  const [isPasswordVisible, setPasswordVisibility] = useState(false);
+
+  const handleSignIn = () => {
+    if (username === "HackerBrain1" && password === "Ha6\\;’3@#5_") {
+      Alert.alert("Success", "Sign in successful!");
+      navigation.navigate("HomepageScrollingOverview");
+    } else {
+      Alert.alert("Error", "Invalid username or password");
+    }
+  };
+
+  const togglePasswordVisibility = () => {
+    setPasswordVisibility(!isPasswordVisible);
+  };
 
   return (
-    <View style={styles.signInPasswordHidden}>
-      <Text style={styles.signIn}>Sign In</Text>
+    <View style={styles.signIn}>
+      <Text style={styles.signIn1}>Sign In</Text>
       <View style={[styles.textFieldPrimaryText, styles.textPosition]}>
-        <Text style={[styles.text, styles.textTypo]}>HackerBrain1</Text>
+        <TextInput
+          style={[styles.textInput, styles.textTypo]}
+          placeholder="Username"
+          value={username}
+          onChangeText={setUsername}
+        />
         <Image
           style={[styles.iconUser, styles.iconLayout1]}
           contentFit="cover"
@@ -26,7 +48,13 @@ const SignInPasswordHidden = () => {
         />
       </View>
       <View style={[styles.textFieldPrimaryText2, styles.textPosition]}>
-        <Text style={[styles.text, styles.textTypo]}>***********</Text>
+        <TextInput
+          style={[styles.textInput, styles.textTypo]}
+          placeholder="Password"
+          value={password}
+          onChangeText={setPassword}
+          secureTextEntry={!isPasswordVisible}
+        />
         <Image
           style={[styles.iconUser, styles.iconLayout1]}
           contentFit="cover"
@@ -34,13 +62,40 @@ const SignInPasswordHidden = () => {
         />
         <Pressable
           style={[styles.iconEyes, styles.iconLayout1]}
-          onPress={() => navigation.navigate("SignIn")}
+          onPress={togglePasswordVisibility}
         >
           <Image
             style={styles.iconLayout}
             contentFit="cover"
             source={require("../assets/icon--eyes1.png")}
           />
+        </Pressable>
+      </View>
+      <Pressable
+        style={[styles.buttonPrimaryTextAble, styles.textPosition]}
+        onPress={handleSignIn}
+      >
+        <View style={[styles.text2, styles.textFlexBox]}>
+          <Text style={[styles.button, styles.textTypo]}>Sign In</Text>
+        </View>
+      </Pressable>
+      <Pressable
+        style={[styles.buttonText, styles.textFlexBox]}
+        onPress={() => navigation.navigate("ForgotPasswordConcealed")}
+      >
+        <Text style={[styles.buttonText1, styles.textTypo]}>
+          Forgot password ?
+        </Text>
+      </Pressable>
+      <View style={[styles.text3, styles.textFlexBox]}>
+        <Text style={[styles.dontHaveAn, styles.orSignInTypo]}>
+          Don't have an account?
+        </Text>
+        <Pressable
+          style={styles.signUp}
+          onPress={() => navigation.navigate("SignUpPasswordConcealed")}
+        >
+          <Text style={styles.signUp1}>Sign Up</Text>
         </Pressable>
       </View>
       <View style={[styles.divider, styles.iconLayout1]}>
@@ -51,37 +106,7 @@ const SignInPasswordHidden = () => {
         <View style={[styles.dividerItem, styles.dividerPosition]} />
       </View>
       <Pressable
-        style={[styles.buttonPrimaryTextAble, styles.textPosition]}
-        onPress={() => navigation.navigate("HomepageScrollingOverview")}
-      >
-        <View style={[styles.text2, styles.textFlexBox]}>
-          <Text style={[styles.button, styles.textTypo]}>Sign In</Text>
-        </View>
-      </Pressable>
-      <TouchableHighlight
-        style={[styles.buttonText, styles.textFlexBox]}
-        underlayColor="#fff"
-        onPress={() => navigation.navigate("ForgotPassword")}
-      >
-        <Text style={[styles.buttonText1, styles.textTypo]}>
-          Forgot password ?
-        </Text>
-      </TouchableHighlight>
-      <View style={[styles.text3, styles.textFlexBox]}>
-        <Text style={[styles.dontHaveAn, styles.orSignInTypo]}>
-          Don't have an account?
-        </Text>
-        <TouchableHighlight
-          style={styles.signUp}
-          underlayColor="#fff"
-          onPress={() => navigation.navigate("SignUpPasswordConcealed")}
-        >
-          <Text style={styles.signUp1}>Sign Up</Text>
-        </TouchableHighlight>
-      </View>
-      <TouchableHighlight
         style={[styles.facebookButton, styles.buttonLayout]}
-        underlayColor="#fff"
         onPress={() => navigation.navigate("SignInWithFacebook")}
       >
         <Image
@@ -89,10 +114,9 @@ const SignInPasswordHidden = () => {
           contentFit="cover"
           source={require("../assets/facebook-button.png")}
         />
-      </TouchableHighlight>
-      <TouchableHighlight
+      </Pressable>
+      <Pressable
         style={[styles.appleMailButton, styles.buttonLayout]}
-        underlayColor="#fff"
         onPress={() => navigation.navigate("SignInWithOutlook")}
       >
         <Image
@@ -100,10 +124,9 @@ const SignInPasswordHidden = () => {
           contentFit="cover"
           source={require("../assets/apple-mail-button.png")}
         />
-      </TouchableHighlight>
-      <TouchableHighlight
+      </Pressable>
+      <Pressable
         style={[styles.gmailButton, styles.buttonLayout]}
-        underlayColor="#fff"
         onPress={() => navigation.navigate("SignInWithGmail")}
       >
         <Image
@@ -111,7 +134,7 @@ const SignInPasswordHidden = () => {
           contentFit="cover"
           source={require("../assets/gmail-button.png")}
         />
-      </TouchableHighlight>
+      </Pressable>
       <Image
         style={[styles.vectorIcon, styles.vectorIconLayout1]}
         contentFit="cover"
@@ -220,7 +243,7 @@ const styles = StyleSheet.create({
     position: "absolute",
     overflow: "hidden",
   },
-  signIn: {
+  signIn1: {
     marginLeft: -41.5,
     top: 119,
     fontSize: FontSize.title24Bold_size,
@@ -232,8 +255,9 @@ const styles = StyleSheet.create({
     left: "50%",
     position: "absolute",
   },
-  text: {
+  textInput: {
     left: 64,
+    right: 64,
     textAlign: "left",
     top: 12,
     fontFamily: FontFamily.poppinsMedium,
@@ -257,7 +281,7 @@ const styles = StyleSheet.create({
     },
     elevation: 8,
     shadowRadius: 8,
-    shadowColor: "rgba(0, 0, 0, 0.08)",
+    shadowColor: "rgba(0 0 0 0.08)",
     height: 48,
     borderRadius: Border.br_base,
     backgroundColor: Color.universalWhite,
@@ -277,7 +301,7 @@ const styles = StyleSheet.create({
     },
     elevation: 8,
     shadowRadius: 8,
-    shadowColor: "rgba(0, 0, 0, 0.08)",
+    shadowColor: "rgba(0 0 0 0.08)",
     height: 48,
     borderRadius: Border.br_base,
     backgroundColor: Color.universalWhite,
@@ -298,6 +322,7 @@ const styles = StyleSheet.create({
   divider: {
     top: 435,
     left: 24,
+    height: 24,
     right: 24,
   },
   button: {
@@ -320,7 +345,7 @@ const styles = StyleSheet.create({
   },
   buttonText: {
     top: 315,
-    right: 24,
+    right: 29,
   },
   dontHaveAn: {
     textAlign: "left",
@@ -381,9 +406,9 @@ const styles = StyleSheet.create({
     height: 19,
   },
   pressable: {
-    top: 42,
+    top: 41,
     left: 25,
-    shadowColor: "rgba(0, 0, 0, 0.25)",
+    shadowColor: "rgba(0 0 0 0.25)",
     shadowRadius: 4,
     elevation: 4,
     width: 56,
@@ -399,7 +424,7 @@ const styles = StyleSheet.create({
     },
     flexDirection: "row",
   },
-  signInPasswordHidden: {
+  signIn: {
     flex: 1,
     height: 851,
     overflow: "hidden",
@@ -408,4 +433,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default SignInPasswordHidden;
+export default SignIn;
