@@ -17,13 +17,11 @@ import NotificationCleared from "./screens/NotificationCleared";
 import Notification1 from "./screens/Notification1";
 import HomepageScrollingOverview from "./screens/HomepageScrollingOverview";
 import PasswordResetSuccess from "./screens/PasswordResetSuccess";
-import ForgotPassword from "./screens/ForgotPassword";
 import ForgotPasswordConcealed from "./screens/ForgotPasswordConcealed";
 import ForgotPassword1 from "./screens/ForgotPassword1";
 import SignInWithGmail from "./screens/SignInWithGmail";
 import SignInWithOutlook from "./screens/SignInWithOutlook";
 import SignInWithFacebook from "./screens/SignInWithFacebook";
-import SignIn from "./screens/SignIn";
 import SignInPasswordHidden from "./screens/SignInPasswordHidden";
 import OnBoarding from "./screens/OnBoarding";
 import OnBoarding1 from "./screens/OnBoarding1";
@@ -140,11 +138,6 @@ const App = () => {
               options={{ headerShown: false }}
             />
             <Stack.Screen
-              name="ForgotPassword"
-              component={ForgotPassword}
-              options={{ headerShown: false }}
-            />
-            <Stack.Screen
               name="ForgotPasswordConcealed"
               component={ForgotPasswordConcealed}
               options={{ headerShown: false }}
@@ -167,11 +160,6 @@ const App = () => {
             <Stack.Screen
               name="SignInWithFacebook"
               component={SignInWithFacebook}
-              options={{ headerShown: false }}
-            />
-            <Stack.Screen
-              name="SignIn"
-              component={SignIn}
               options={{ headerShown: false }}
             />
             <Stack.Screen
