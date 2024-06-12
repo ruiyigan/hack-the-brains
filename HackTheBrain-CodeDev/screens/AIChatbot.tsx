@@ -3,6 +3,7 @@ import { View, StyleSheet, TextInput, ScrollView, Text, TouchableOpacity } from 
 import { useNavigation } from '@react-navigation/native';
 import { Appbar, Card } from 'react-native-paper';
 import OpenAI from "openai";
+import { OPENAI_API_KEY } from '@env'; // Import the API key from the .env file
 
 interface Memory {
   shading_sunlight_status: ShadingSunlightStatus[];
@@ -36,7 +37,11 @@ interface IrrigationColumn {
 }
 
 const openai = new OpenAI({
+<<<<<<< HEAD
   apiKey: 'sk-proj-ydQW9xzVqNUlT1XKrSXkT3BlbkFJpOP8aOVzj9Rgno5PFEC2', //sk-proj-ydQW9xzVqNUlT1XKrSXkT3BlbkFJpOP8aOVzj9Rgno5PFEC2
+=======
+  apiKey: OPENAI_API_KEY, // Use the imported API key
+>>>>>>> 105492c (updated .env)
   dangerouslyAllowBrowser: true
 });
 
@@ -67,102 +72,7 @@ const SocialScreen = (): JSX.Element => {
           }
         ]
       },
-      {
-        plotIndex: 2,
-        status: "In Progress",
-        columns: [
-          {
-            columnIndex: 1,
-            isShadingOpen: true,
-            shadingStrength: 70,
-            enableNotifications: true
-          },
-          {
-            columnIndex: 2,
-            isShadingOpen: false,
-            shadingStrength: 50,
-            enableNotifications: false
-          },
-          {
-            columnIndex: 3,
-            isShadingOpen: false,
-            shadingStrength: 50,
-            enableNotifications: true
-          }
-        ]
-      },
-      {
-        plotIndex: 3,
-        status: "Good",
-        columns: [
-          {
-            columnIndex: 1,
-            isShadingOpen: true,
-            shadingStrength: 70,
-            enableNotifications: true
-          },
-          {
-            columnIndex: 2,
-            isShadingOpen: false,
-            shadingStrength: 50,
-            enableNotifications: false
-          },
-          {
-            columnIndex: 3,
-            isShadingOpen: false,
-            shadingStrength: 50,
-            enableNotifications: true
-          }
-        ]
-      },
-      {
-        plotIndex: 4,
-        status: "Good",
-        columns: [
-          {
-            columnIndex: 1,
-            isShadingOpen: true,
-            shadingStrength: 70,
-            enableNotifications: true
-          },
-          {
-            columnIndex: 2,
-            isShadingOpen: false,
-            shadingStrength: 50,
-            enableNotifications: false
-          },
-          {
-            columnIndex: 3,
-            isShadingOpen: false,
-            shadingStrength: 50,
-            enableNotifications: true
-          }
-        ]
-      },
-      {
-        plotIndex: 5,
-        status: "Good",
-        columns: [
-          {
-            columnIndex: 1,
-            isShadingOpen: true,
-            shadingStrength: 70,
-            enableNotifications: true
-          },
-          {
-            columnIndex: 2,
-            isShadingOpen: false,
-            shadingStrength: 50,
-            enableNotifications: false
-          },
-          {
-            columnIndex: 3,
-            isShadingOpen: false,
-            shadingStrength: 50,
-            enableNotifications: true
-          }
-        ]
-      }
+      // Add more shading_sunlight_status data as needed
     ],
     irrigation_status: [
       {
@@ -189,104 +99,10 @@ const SocialScreen = (): JSX.Element => {
           }
         ]
       },
-      {
-        plotIndex: 2,
-        status: "In Progress",
-        columns: [
-          {
-            columnIndex: 1,
-            waterQuantityPerSession: 20,
-            frequency: 10,
-            enableNotifications: true
-          },
-          {
-            columnIndex: 2,
-            waterQuantityPerSession: 10,
-            frequency: 20,
-            enableNotifications: false
-          },
-          {
-            columnIndex: 3,
-            waterQuantityPerSession: 20,
-            frequency: 10,
-            enableNotifications: true
-          }
-        ]
-      },
-      {
-        plotIndex: 3,
-        status: "Maintenance",
-        columns: [
-          {
-            columnIndex: 1,
-            waterQuantityPerSession: 20,
-            frequency: 10,
-            enableNotifications: true
-          },
-          {
-            columnIndex: 2,
-            waterQuantityPerSession: 20,
-            frequency: 10,
-            enableNotifications: true
-          },
-          {
-            columnIndex: 3,
-            waterQuantityPerSession: 20,
-            frequency: 10,
-            enableNotifications: true
-          }
-        ]
-      },
-      {
-        plotIndex: 4,
-        status: "Good",
-        columns: [
-          {
-            columnIndex: 1,
-            waterQuantityPerSession: 20,
-            frequency: 10,
-            enableNotifications: true
-          },
-          {
-            columnIndex: 2,
-            waterQuantityPerSession: 20,
-            frequency: 10,
-            enableNotifications: false
-          },
-          {
-            columnIndex: 3,
-            waterQuantityPerSession: 20,
-            frequency: 10,
-            enableNotifications: true
-          }
-        ]
-      },
-      {
-        plotIndex: 5,
-        status: "In Progress",
-        columns: [
-          {
-            columnIndex: 1,
-            waterQuantityPerSession: 50,
-            frequency: 2,
-            enableNotifications: true
-          },
-          {
-            columnIndex: 2,
-            waterQuantityPerSession: 10,
-            frequency: 20,
-            enableNotifications: true
-          },
-          {
-            columnIndex: 3,
-            waterQuantityPerSession: 20,
-            frequency: 10,
-            enableNotifications: false
-          }
-        ]
-      }
+      // Add more irrigation_status data as needed
     ]
   }
+
   const [messages, setMessages] = useState<{ text: string, sender: string }[]>([{ text: 'Hi! How can I help you today?', sender: 'bot' }]);
   const [inputText, setInputText] = useState<string>('');
   const navigation = useNavigation();
@@ -321,7 +137,7 @@ const SocialScreen = (): JSX.Element => {
         presence_penalty: 0,
       });
 
-      return completion.choices[0].text.trim()
+      return completion.choices[0].text.trim();
     } catch (error) {
       console.error(error);
       return 'I apologize, but there was an error processing your request. Please try again.';

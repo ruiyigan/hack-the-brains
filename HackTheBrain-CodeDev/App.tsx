@@ -4,8 +4,6 @@ import { NavigationContainer } from "@react-navigation/native";
 import { useFonts } from "expo-font";
 import AppLogo from "./screens/AppLogo";
 import HomepageScrollingAnalytics from "./screens/HomepageScrollingAnalytics";
-import AIChatbotSent from "./screens/AIChatbotSent";
-import AIChatbotSent1 from "./screens/AIChatbotSent1";
 import AIChatbot from "./screens/AIChatbot";
 import SocialForum from "./screens/SocialForum";
 import AidMainPage from "./screens/AidMainPage";
@@ -17,8 +15,8 @@ import NotificationCleared from "./screens/NotificationCleared";
 import Notification1 from "./screens/Notification1";
 import HomepageScrollingOverview from "./screens/HomepageScrollingOverview";
 import PasswordResetSuccess from "./screens/PasswordResetSuccess";
+import ForgotPassword from "./screens/ForgotPassword";
 import ForgotPasswordConcealed from "./screens/ForgotPasswordConcealed";
-import ForgotPassword1 from "./screens/ForgotPassword1";
 import SignInWithGmail from "./screens/SignInWithGmail";
 import SignInWithOutlook from "./screens/SignInWithOutlook";
 import SignInWithFacebook from "./screens/SignInWithFacebook";
@@ -70,16 +68,6 @@ const App = () => {
             <Stack.Screen
               name="HomepageScrollingAnalytics"
               component={HomepageScrollingAnalytics}
-              options={{ headerShown: false }}
-            />
-            <Stack.Screen
-              name="AIChatbotSent"
-              component={AIChatbotSent}
-              options={{ headerShown: false }}
-            />
-            <Stack.Screen
-              name="AIChatbotSent1"
-              component={AIChatbotSent1}
               options={{ headerShown: false }}
             />
             <Stack.Screen
@@ -138,13 +126,13 @@ const App = () => {
               options={{ headerShown: false }}
             />
             <Stack.Screen
-              name="ForgotPasswordConcealed"
-              component={ForgotPasswordConcealed}
+              name="ForgotPassword"
+              component={ForgotPassword}
               options={{ headerShown: false }}
             />
             <Stack.Screen
-              name="ForgotPassword1"
-              component={ForgotPassword1}
+              name="ForgotPasswordConcealed"
+              component={ForgotPasswordConcealed}
               options={{ headerShown: false }}
             />
             <Stack.Screen

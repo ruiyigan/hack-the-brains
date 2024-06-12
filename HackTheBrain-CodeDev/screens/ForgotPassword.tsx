@@ -1,15 +1,19 @@
 import * as React from "react";
-import { Text, StyleSheet, View } from "react-native";
+import { Text, StyleSheet, View, Pressable } from "react-native";
 import { Image } from "expo-image";
+import { StackNavigationProp } from "@react-navigation/stack";
+import { useNavigation, ParamListBase } from "@react-navigation/native";
 import { Color, Border, FontFamily, FontSize, Padding } from "../GlobalStyles";
 
-const ForgotPassword1 = () => {
+const ForgotPassword = () => {
+  const navigation = useNavigation<StackNavigationProp<ParamListBase>>();
+
   return (
     <View style={styles.forgotPassword}>
       <View style={[styles.card, styles.cardLayout1]}>
         <Text style={[styles.maneUikit, styles.searchTypo]}>Mane UiKit</Text>
-        <Text style={[styles.text, styles.textClr]}>01/01/2021</Text>
-        <Text style={[styles.text1, styles.textClr]}>01/02/2021</Text>
+        <Text style={[styles.text, styles.textTypo]}>01/01/2021</Text>
+        <Text style={[styles.text1, styles.textTypo]}>01/02/2021</Text>
         <Image
           style={[styles.cardChild, styles.cardLayout]}
           contentFit="cover"
@@ -52,8 +56,8 @@ const ForgotPassword1 = () => {
       </View>
       <View style={[styles.card1, styles.cardLayout1]}>
         <Text style={[styles.maneUikit, styles.searchTypo]}>Mane UiKit</Text>
-        <Text style={[styles.text, styles.textClr]}>01/01/2021</Text>
-        <Text style={[styles.text1, styles.textClr]}>01/02/2021</Text>
+        <Text style={[styles.text, styles.textTypo]}>01/01/2021</Text>
+        <Text style={[styles.text1, styles.textTypo]}>01/02/2021</Text>
         <Image
           style={[styles.cardChild, styles.cardLayout]}
           contentFit="cover"
@@ -102,20 +106,20 @@ const ForgotPassword1 = () => {
       <View style={[styles.barTab2Project, styles.barLayout]}>
         <View style={[styles.tabBar, styles.indicatorPosition]}>
           <View style={[styles.active, styles.activeSpaceBlock]}>
-            <Text style={[styles.projects, styles.buttonClr]}>Projects</Text>
+            <Text style={[styles.projects, styles.newLayout]}>Projects</Text>
           </View>
           <View style={[styles.inactive, styles.activeSpaceBlock]}>
-            <Text style={[styles.inactive1, styles.text16Typo]}>Completed</Text>
+            <Text style={[styles.inactive1, styles.newLayout]}>Completed</Text>
           </View>
           <View style={[styles.inactive, styles.activeSpaceBlock]}>
-            <Text style={[styles.inactive1, styles.text16Typo]}>Flag</Text>
+            <Text style={[styles.inactive1, styles.newLayout]}>Flag</Text>
           </View>
         </View>
       </View>
       <View style={[styles.card2, styles.cardLayout1]}>
         <Text style={[styles.maneUikit, styles.searchTypo]}>Mane UiKit</Text>
-        <Text style={[styles.text, styles.textClr]}>01/01/2021</Text>
-        <Text style={[styles.text1, styles.textClr]}>01/02/2021</Text>
+        <Text style={[styles.text, styles.textTypo]}>01/01/2021</Text>
+        <Text style={[styles.text1, styles.textTypo]}>01/02/2021</Text>
         <Image
           style={[styles.cardChild, styles.cardLayout]}
           contentFit="cover"
@@ -158,8 +162,8 @@ const ForgotPassword1 = () => {
       </View>
       <View style={[styles.card3, styles.datePosition]}>
         <Text style={[styles.maneUikit, styles.searchTypo]}>Mane UiKit</Text>
-        <Text style={[styles.text, styles.textClr]}>01/01/2021</Text>
-        <Text style={[styles.text1, styles.textClr]}>01/02/2021</Text>
+        <Text style={[styles.text, styles.textTypo]}>01/01/2021</Text>
+        <Text style={[styles.text1, styles.textTypo]}>01/02/2021</Text>
         <Image
           style={[styles.cardChild, styles.cardLayout]}
           contentFit="cover"
@@ -201,7 +205,7 @@ const ForgotPassword1 = () => {
         />
       </View>
       <Image
-        style={[styles.buttonFab, styles.textPosition]}
+        style={styles.buttonFab}
         contentFit="cover"
         source={require("../assets/button--fab1.png")}
       />
@@ -210,19 +214,19 @@ const ForgotPassword1 = () => {
       </View>
       <View style={[styles.card4, styles.card4Position]}>
         <View style={[styles.cardChild27, styles.childPosition]} />
-        <View style={[styles.date, styles.textLayout]}>
+        <View style={[styles.date, styles.dateLayout]}>
           <Image
-            style={[styles.labelIcon, styles.textLayout]}
+            style={[styles.labelIcon, styles.dateLayout]}
             contentFit="cover"
             source={require("../assets/label1.png")}
           />
-          <Text style={[styles.jan12021, styles.text16Position]}>
+          <Text style={[styles.jan12021, styles.iconPosition1]}>
             Jan 1 2024
           </Text>
         </View>
         <View style={[styles.navigation, styles.card4Position]}>
           <Text style={[styles.search, styles.childPosition]}>
-            Forgot Password
+            Reset Password
           </Text>
           <Image
             style={[styles.iconBackward, styles.iconLayout]}
@@ -230,37 +234,87 @@ const ForgotPassword1 = () => {
             source={require("../assets/icon--backward.png")}
           />
           <Image
-            style={[styles.iconCancel, styles.text17Position]}
+            style={[styles.iconCancel, styles.text16Position]}
             contentFit="cover"
             source={require("../assets/icon--cancel.png")}
           />
         </View>
-        <Text style={[styles.keyInUser, styles.text16Typo]}>
-          Key in user email
-        </Text>
-        <View style={[styles.textFieldPrimaryText, styles.textLayout]}>
-          <Text
-            style={[styles.text16, styles.text16Position]}
-          >{` .           HackerBrain1@gmail.com `}</Text>
-          <Image
-            style={[styles.iconUser, styles.text16Position]}
-            contentFit="cover"
-            source={require("../assets/icon--user.png")}
-          />
-        </View>
-        <View style={[styles.buttonPrimaryTextAble, styles.textLayout]}>
-          <View style={[styles.text17, styles.text17Position]}>
-            <Text style={[styles.button, styles.buttonClr]}>
-              Get reset code
+        <Pressable
+          style={[styles.buttonPrimaryTextAble, styles.dateLayout]}
+          onPress={() => navigation.navigate("PasswordResetSuccess")}
+        >
+          <View style={[styles.text16, styles.text16Position]}>
+            <Text style={[styles.button, styles.newLayout]}>
+              Reset Password
             </Text>
           </View>
+        </Pressable>
+        <Image
+          style={styles.mdialertIcon}
+          contentFit="cover"
+          source={require("../assets/mdialert.png")}
+        />
+        <View style={[styles.textFieldPrimaryText2, styles.textShadowBox]}>
+          <Text style={[styles.text17, styles.iconPosition1]}>
+            <Text
+              style={styles.ha635}
+            >{` .              Ha6\;’3@#5_                  `}</Text>
+            <Text style={styles.text18}>__</Text>
+          </Text>
+          <Image
+            style={[styles.iconPassword, styles.iconPosition1]}
+            contentFit="cover"
+            source={require("../assets/icon--password.png")}
+          />
+          <Image
+            style={[styles.iconEyes, styles.iconPosition1]}
+            contentFit="cover"
+            source={require("../assets/icon--eyes.png")}
+          />
         </View>
+        <Pressable
+          style={[styles.iconEyes1, styles.iconPosition]}
+          onPress={() => navigation.navigate("ForgotPasswordConcealed")}
+        >
+          <Image
+            style={styles.icon}
+            contentFit="cover"
+            source={require("../assets/icon--eyes1.png")}
+          />
+        </Pressable>
+        <Text style={[styles.newPassword, styles.newLayout]}>New Password</Text>
+        <View style={[styles.textFieldPrimaryText21, styles.textShadowBox]}>
+          <Text style={[styles.text17, styles.iconPosition1]}>
+            <Text
+              style={styles.ha635}
+            >{` .              Ha6\;’3@#5_                  `}</Text>
+            <Text style={styles.text18}>__</Text>
+          </Text>
+          <Image
+            style={[styles.iconPassword, styles.iconPosition1]}
+            contentFit="cover"
+            source={require("../assets/icon--password.png")}
+          />
+          <Image
+            style={[styles.iconEyes, styles.iconPosition1]}
+            contentFit="cover"
+            source={require("../assets/icon--eyes.png")}
+          />
+        </View>
+        <Pressable
+          style={[styles.iconEyes3, styles.iconPosition]}
+          onPress={() => navigation.navigate("ForgotPasswordConcealed")}
+        >
+          <Image
+            style={styles.icon}
+            contentFit="cover"
+            source={require("../assets/icon--eyes1.png")}
+          />
+        </Pressable>
+        <Text style={[styles.confirmNewPassword, styles.newLayout]}>
+          Confirm New Password
+        </Text>
       </View>
-      <Image
-        style={styles.mdialertIcon}
-        contentFit="cover"
-        source={require("../assets/mdialert1.png")}
-      />
     </View>
   );
 };
@@ -268,9 +322,9 @@ const ForgotPassword1 = () => {
 const styles = StyleSheet.create({
   cardLayout1: {
     height: 148,
-    right: 24,
     backgroundColor: Color.neutral3,
     borderRadius: Border.br_base,
+    right: 24,
     position: "absolute",
     overflow: "hidden",
   },
@@ -278,8 +332,10 @@ const styles = StyleSheet.create({
     fontFamily: FontFamily.poppinsBold,
     fontWeight: "700",
   },
-  textClr: {
+  textTypo: {
     color: Color.neutral2,
+    fontFamily: FontFamily.poppinsMedium,
+    fontWeight: "500",
     textAlign: "left",
   },
   cardLayout: {
@@ -342,24 +398,13 @@ const styles = StyleSheet.create({
     alignItems: "center",
     flexDirection: "row",
   },
-  buttonClr: {
-    color: Color.universalWhite,
+  newLayout: {
     lineHeight: 24,
     fontSize: FontSize.sansBodyBodyCopy_size,
-  },
-  text16Typo: {
-    lineHeight: 24,
-    fontSize: FontSize.sansBodyBodyCopy_size,
-    fontFamily: FontFamily.poppinsMedium,
-    fontWeight: "500",
   },
   datePosition: {
     top: 364,
     left: 24,
-  },
-  textPosition: {
-    right: 28,
-    overflow: "hidden",
   },
   modalPosition: {
     left: "0%",
@@ -370,18 +415,39 @@ const styles = StyleSheet.create({
     top: 44,
     position: "absolute",
   },
-  textLayout: {
+  dateLayout: {
     height: 48,
     position: "absolute",
   },
-  text16Position: {
+  iconPosition1: {
     top: 12,
     position: "absolute",
   },
-  text17Position: {
+  text16Position: {
     marginTop: -12,
     left: "50%",
     top: "50%",
+    position: "absolute",
+  },
+  textShadowBox: {
+    shadowOpacity: 1,
+    elevation: 8,
+    shadowRadius: 8,
+    shadowOffset: {
+      width: 0,
+      height: 1,
+    },
+    shadowColor: "rgba(0, 0, 0, 0.08)",
+    height: 48,
+    borderRadius: Border.br_base,
+    position: "absolute",
+    overflow: "hidden",
+    backgroundColor: Color.universalWhite,
+  },
+  iconPosition: {
+    left: 314,
+    height: 24,
+    width: 24,
     position: "absolute",
   },
   maneUikit: {
@@ -396,8 +462,6 @@ const styles = StyleSheet.create({
   },
   text: {
     left: 48,
-    fontFamily: FontFamily.poppinsMedium,
-    fontWeight: "500",
     lineHeight: 20,
     fontSize: FontSize.typographyBody2_size,
     color: Color.neutral2,
@@ -406,8 +470,6 @@ const styles = StyleSheet.create({
   },
   text1: {
     left: 227,
-    fontFamily: FontFamily.poppinsMedium,
-    fontWeight: "500",
     lineHeight: 20,
     fontSize: FontSize.typographyBody2_size,
     color: Color.neutral2,
@@ -551,6 +613,7 @@ const styles = StyleSheet.create({
     left: 24,
   },
   projects: {
+    color: Color.universalWhite,
     textAlign: "right",
     fontFamily: FontFamily.poppinsBold,
     fontWeight: "700",
@@ -561,6 +624,8 @@ const styles = StyleSheet.create({
   },
   inactive1: {
     color: Color.neutral2,
+    fontFamily: FontFamily.poppinsMedium,
+    fontWeight: "500",
     textAlign: "left",
   },
   inactive: {
@@ -583,26 +648,28 @@ const styles = StyleSheet.create({
   },
   card3: {
     height: 148,
-    right: 24,
     backgroundColor: Color.neutral3,
     borderRadius: Border.br_base,
+    right: 24,
     position: "absolute",
     overflow: "hidden",
   },
   buttonFab: {
+    right: 28,
     width: 44,
     height: 44,
     borderRadius: Border.br_xs,
     top: 68,
     position: "absolute",
+    overflow: "hidden",
   },
   modal: {
     opacity: 0.5,
     bottom: "0%",
     top: "0%",
-    height: "100%",
     left: "0%",
     right: "0%",
+    height: "100%",
     position: "absolute",
     backgroundColor: Color.textColor,
   },
@@ -610,9 +677,9 @@ const styles = StyleSheet.create({
     opacity: 0.7,
     bottom: "0%",
     top: "0%",
-    height: "100%",
     left: "0%",
     right: "0%",
+    height: "100%",
     position: "absolute",
   },
   cardChild27: {
@@ -649,7 +716,7 @@ const styles = StyleSheet.create({
   },
   search: {
     marginTop: -14,
-    marginLeft: -76.5,
+    marginLeft: -72.5,
     textAlign: "center",
     top: "50%",
     left: "50%",
@@ -676,64 +743,110 @@ const styles = StyleSheet.create({
     height: 28,
     left: 24,
   },
-  keyInUser: {
-    top: 236,
-    left: 33,
-    textAlign: "left",
-    color: Color.textColor,
-    position: "absolute",
-  },
-  text16: {
-    left: -51,
-    lineHeight: 24,
-    fontSize: FontSize.sansBodyBodyCopy_size,
+  button: {
+    color: Color.universalWhite,
+    textAlign: "center",
     fontFamily: FontFamily.poppinsMedium,
     fontWeight: "500",
-    textAlign: "center",
+    fontSize: FontSize.sansBodyBodyCopy_size,
+  },
+  text16: {
+    marginLeft: -64,
+    flexDirection: "row",
+    marginTop: -12,
+  },
+  buttonPrimaryTextAble: {
+    top: 500,
+    backgroundColor: Color.colorMediumspringgreen_200,
+    borderRadius: Border.br_base,
+    height: 48,
+    left: 24,
+    right: 24,
+    overflow: "hidden",
+  },
+  mdialertIcon: {
+    top: 64,
+    left: 130,
+    width: 136,
+    height: 136,
+    position: "absolute",
+    overflow: "hidden",
+  },
+  ha635: {
     color: Color.textColor,
   },
-  iconUser: {
+  text18: {
+    color: Color.universalWhite,
+  },
+  text17: {
+    left: -61,
+    lineHeight: 24,
+    fontSize: FontSize.sansBodyBodyCopy_size,
+    textAlign: "center",
+    fontFamily: FontFamily.poppinsMedium,
+    fontWeight: "500",
+  },
+  iconPassword: {
     display: "none",
     height: 24,
     width: 24,
     overflow: "hidden",
     left: 24,
   },
-  textFieldPrimaryText: {
-    top: 272,
-    left: 30,
-    shadowColor: "rgba(0, 0, 0, 0.08)",
+  iconEyes: {
+    left: 279,
+    height: 24,
+    width: 24,
+    overflow: "hidden",
+  },
+  textFieldPrimaryText2: {
+    top: 284,
+    left: 24,
+    right: 24,
+    shadowOpacity: 1,
+    elevation: 8,
+    shadowRadius: 8,
     shadowOffset: {
       width: 0,
       height: 1,
     },
-    shadowRadius: 8,
-    elevation: 8,
-    shadowOpacity: 1,
-    right: 28,
-    overflow: "hidden",
-    borderRadius: Border.br_base,
-    height: 48,
-    backgroundColor: Color.universalWhite,
+    shadowColor: "rgba(0, 0, 0, 0.08)",
   },
-  button: {
-    textAlign: "center",
+  icon: {
+    height: "100%",
+    overflow: "hidden",
+    width: "100%",
+  },
+  iconEyes1: {
+    top: 296,
+  },
+  newPassword: {
+    top: 232,
+    left: 31,
     fontFamily: FontFamily.poppinsMedium,
     fontWeight: "500",
+    fontSize: FontSize.sansBodyBodyCopy_size,
+    textAlign: "left",
+    color: Color.textColor,
+    position: "absolute",
   },
-  text17: {
-    marginLeft: -59.5,
-    flexDirection: "row",
-    marginTop: -12,
+  textFieldPrimaryText21: {
+    top: 400,
+    right: 25,
+    left: 23,
   },
-  buttonPrimaryTextAble: {
-    top: 336,
-    right: 23,
-    left: 25,
-    backgroundColor: Color.colorMediumspringgreen_200,
-    borderRadius: Border.br_base,
-    height: 48,
-    overflow: "hidden",
+  iconEyes3: {
+    top: 406,
+  },
+  confirmNewPassword: {
+    top: 348,
+    left: 30,
+    fontFamily: FontFamily.poppinsMedium,
+    fontWeight: "500",
+    fontSize: FontSize.sansBodyBodyCopy_size,
+    textAlign: "left",
+    color: Color.textColor,
+    position: "absolute",
   },
   card4: {
     borderTopLeftRadius: Border.br_21xl,
@@ -746,14 +859,6 @@ const styles = StyleSheet.create({
     overflow: "hidden",
     backgroundColor: Color.universalWhite,
   },
-  mdialertIcon: {
-    top: 124,
-    left: 127,
-    width: 136,
-    height: 136,
-    position: "absolute",
-    overflow: "hidden",
-  },
   forgotPassword: {
     flex: 1,
     height: 851,
@@ -763,4 +868,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default ForgotPassword1;
+export default ForgotPassword;
