@@ -64,11 +64,11 @@ function ControlCard({
         </HStack>
       </HStack>
       <HStack justifyContent="space-between" style={styles.row}>
-        <Text style={styles.cardText}>Open/Close Shading</Text>
+        <Text style={styles.cardText}>On/Off Valve</Text>
         <Switch value={isShadingOpen} onToggle={() => setIsShadingOpen(!isShadingOpen)} colorScheme="tertiary" />
       </HStack>
       <HStack justifyContent="space-between" style={styles.rowDouble}>
-        <Text style={styles.cardText}>Shading Strength</Text>
+        <Text style={styles.cardText}>Water Intensity</Text>
         <HStack justifyContent="space-between" style={styles.row}>
           <Text style={styles.cardText}>{onChangeShadingStrength}</Text>
           <Slider defaultValue={70} colorScheme="tertiary" onChange={v => {
@@ -88,7 +88,7 @@ function ControlCard({
     </VStack>
   );
 }
-const ControlIrrigationPlot2Colu = () => {
+const ControlIrrigationPlot2Colu1 = () => {
   const navigation = useNavigation();
   const [currentPlotIndex, setCurrentPlotIndex] = React.useState(0);
   const [currentColumnIndex, setCurrentColumnIndex] = React.useState(0);
@@ -1379,4 +1379,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default ControlIrrigationPlot2Colu;
+export default ControlIrrigationPlot2Colu1;
