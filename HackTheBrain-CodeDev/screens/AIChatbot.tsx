@@ -36,7 +36,7 @@ interface IrrigationColumn {
 }
 
 const openai = new OpenAI({
-  apiKey: 'type your api key here', //sk-proj-ydQW9xzVqNUlT1XKrSXkT3BlbkFJpOP8aOVzj9Rgno5PFEC2
+  apiKey: 'sk-proj-ydQW9xzVqNUlT1XKrSXkT3BlbkFJpOP8aOVzj9Rgno5PFEC2', //sk-proj-ydQW9xzVqNUlT1XKrSXkT3BlbkFJpOP8aOVzj9Rgno5PFEC2
   dangerouslyAllowBrowser: true
 });
 
