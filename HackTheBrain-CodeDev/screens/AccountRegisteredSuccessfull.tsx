@@ -591,7 +591,7 @@ const styles = StyleSheet.create({
   },
   search: {
     marginTop: -14,
-    marginLeft: -80.5,
+    marginLeft: -60,
     textAlign: "center",
     left: "50%",
     fontFamily: FontFamily.poppinsBold,

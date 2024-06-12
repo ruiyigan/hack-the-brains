@@ -19,7 +19,7 @@ const SignIn = () => {
   const [isPasswordVisible, setPasswordVisibility] = useState(false);
 
   const handleSignIn = () => {
-    if (username === "HackerBrain1" && password === "Ha6\\;’3@#5_") {
+    if (username === "HackerBrain1" && password === "Password") {
       Alert.alert("Success", "Sign in successful!");
       navigation.navigate("HomepageScrollingOverview");
     } else {
