@@ -1,8 +1,8 @@
 import * as React from "react";
-import { Text, StyleSheet, View, Pressable } from "react-native";
+import { Text, StyleSheet, View, Pressable, TouchableOpacity } from "react-native";
+import { VStack, HStack, Select, CheckIcon, Switch, Slider } from 'native-base';
 import { Image } from "expo-image";
 import { LinearGradient } from "expo-linear-gradient";
-import { StackNavigationProp } from "@react-navigation/stack";
 import { useNavigation, ParamListBase } from "@react-navigation/native";
 import {
   Padding,
@@ -12,12 +12,127 @@ import {
   Color,
   StyleVariable,
 } from "../GlobalStyles";
+import sunLightData from "../data/controls/sunlight.json";
 
-const ControlIrrigationPlot2Colu1 = () => {
-  const navigation = useNavigation<StackNavigationProp<ParamListBase>>();
+// Card Component
+function ControlCard({
+  currentPlotIndex,
+  currentColumnIndex,
+  setCurrentColumnIndex,
+  status,
+  isShadingOpen,
+  setIsShadingOpen,
+  onChangeShadingStrength,
+  setOnChangeShadingStrength,
+  enableNotifications,
+  setEnableNotifications
+}) {
+  return (
+    <VStack style={{ width: '100%' }} justifyContent="space-between" flex={1}>
+      <HStack justifyContent="space-between" style={styles.rowDouble}>
+        <Text style={styles.cardText}>Plot:</Text>
+        <HStack justifyContent="space-between" style={styles.row}>
+          <Text style={styles.cardText}>#{currentPlotIndex + 1}</Text>
+        </HStack>
+      </HStack>
+      <HStack justifyContent="space-between" style={styles.row}>
+        <Text style={styles.cardText}>Status</Text>
+        <View style={styles.pill}>
+          <Text style={styles.pillText}>{status}</Text>
+        </View>
+      </HStack>
+      <HStack justifyContent="space-between" style={styles.rowDouble}>
+        <Text style={styles.cardText}>Column</Text>
+        <HStack justifyContent="space-between" style={styles.row}>
+          <Select
+            selectedValue={String(currentColumnIndex)} // Make sure to convert selectedValue to a string
+            minWidth="200"
+            placeholder="Choose Column"
+            _selectedItem={{
+              bg: "teal.600",
+              endIcon: <CheckIcon size="5" />
+            }}
+            mt={1}
+            style={styles.cardText}
+            onValueChange={itemValue => setCurrentColumnIndex(parseInt(itemValue))} // Ensure onValueChange parses the value to an integer
+          >
+            {Array.from({ length: 5 }).map((_, index) => (
+              <Select.Item key={index} label={String(index)} value={String(index)} />
+            ))}
+          </Select>
+          <Text></Text>
+        </HStack>
+      </HStack>
+      <HStack justifyContent="space-between" style={styles.row}>
+        <Text style={styles.cardText}>Open/Close Shading</Text>
+        <Switch value={isShadingOpen} onToggle={() => setIsShadingOpen(!isShadingOpen)} colorScheme="tertiary" />
+      </HStack>
+      <HStack justifyContent="space-between" style={styles.rowDouble}>
+        <Text style={styles.cardText}>Shading Strength</Text>
+        <HStack justifyContent="space-between" style={styles.row}>
+          <Text style={styles.cardText}>{onChangeShadingStrength}</Text>
+          <Slider defaultValue={70} colorScheme="tertiary" onChange={v => {
+            setOnChangeShadingStrength(Math.floor(v));
+          }} size="sm" w="50%">
+            <Slider.Track>
+              <Slider.FilledTrack />
+            </Slider.Track>
+            <Slider.Thumb />
+          </Slider>
+        </HStack>
+      </HStack>
+      <HStack justifyContent="space-between" style={styles.row}>
+        <Text style={styles.cardText}>Notifications</Text>
+        <Switch value={enableNotifications} onToggle={() => setEnableNotifications(!enableNotifications)} colorScheme="tertiary" />
+      </HStack>
+    </VStack>
+  );
+}
+const ControlIrrigationPlot2Colu = () => {
+  const navigation = useNavigation();
+  const [currentPlotIndex, setCurrentPlotIndex] = React.useState(0);
+  const [currentColumnIndex, setCurrentColumnIndex] = React.useState(0);
+  const [plotData, setPlotData] = React.useState(sunLightData[0]);
+  const [columnData, setColumnData] = React.useState(plotData.columns[0]);
+
+  // Update plotData when currentPlotIndex changes
+  React.useEffect(() => {
+    const newPlotData = sunLightData[currentPlotIndex];
+    setPlotData(newPlotData);
+    setColumnData(newPlotData.columns[0]);
+    setCurrentColumnIndex(0);
+  }, [currentPlotIndex]);
+
+  // Update columnData when currentColumnIndex changes
+  React.useEffect(() => {
+    setColumnData(plotData.columns[currentColumnIndex]);
+  }, [currentColumnIndex, plotData]);
 
   return (
     <View style={styles.controlIrrigationPlot2Colu}>
+      <View style={styles.controlcard}>
+        <View style={[styles.card, { flex: 10 }]}>
+          <ControlCard
+            currentPlotIndex={currentPlotIndex}
+            currentColumnIndex={currentColumnIndex}
+            setCurrentColumnIndex={setCurrentColumnIndex}
+            status={plotData.status}
+            isShadingOpen={columnData.isShadingOpen}
+            setIsShadingOpen={(value) => setColumnData({ ...columnData, isShadingOpen: value })}
+            onChangeShadingStrength={columnData.shadingStrength}
+            setOnChangeShadingStrength={(value) => setColumnData({ ...columnData, shadingStrength: value })}
+            enableNotifications={columnData.enableNotifications}
+            setEnableNotifications={(value) => setColumnData({ ...columnData, enableNotifications: value })}
+          />
+        </View>
+        <View style={[styles.control_pagination, { flex: 2 }]}>
+          {Array.from({ length: sunLightData.length }).map((_, index) => (
+            <TouchableOpacity key={index} onPress={() => setCurrentPlotIndex(index)}>
+              <Text style={styles.control_pageNumber}>{index + 1}</Text>
+            </TouchableOpacity>
+          ))}
+        </View>
+      </View>
       <View style={styles.navigation}>
         <View style={styles.title}>
           <Text style={styles.dashboard}>Control</Text>
@@ -71,7 +186,7 @@ const ControlIrrigationPlot2Colu1 = () => {
         />
         <Pressable
           style={styles.iconSettings}
-          onPress={() => navigation.navigate("Settings1")}
+        onPress={() => navigation.navigate("Settings1")}
         >
           <Image
             style={[styles.icon, styles.iconLayout1]}
@@ -81,7 +196,7 @@ const ControlIrrigationPlot2Colu1 = () => {
         </Pressable>
         <Pressable
           style={styles.vector}
-          onPress={() => navigation.navigate("AidMainPage")}
+        onPress={() => navigation.navigate("AidMainPage")}
         >
           <Image
             style={[styles.icon1, styles.iconLayout1]}
@@ -91,7 +206,7 @@ const ControlIrrigationPlot2Colu1 = () => {
         </Pressable>
         <Pressable
           style={styles.cocoboldhome}
-          onPress={() => navigation.navigate("HomepageScrollingOverview")}
+        onPress={() => navigation.navigate("HomepageScrollingOverview")}
         >
           <Image
             style={[styles.icon, styles.iconLayout1]}
@@ -107,7 +222,7 @@ const ControlIrrigationPlot2Colu1 = () => {
       </View>
       <Pressable
         style={styles.sunny11}
-        onPress={() => navigation.navigate("ControlIrrigationPlot2Colu2")}
+      onPress={() => navigation.navigate("ControlIrrigationPlot2Colu2")}
       >
         <Image
           style={styles.iconLayout1}
@@ -137,497 +252,74 @@ const ControlIrrigationPlot2Colu1 = () => {
         contentFit="cover"
         source={require("../assets/pesticide-1.png")}
       />
-      <View style={[styles.textfield, styles.textfieldLayout]}>
-        <View style={styles.content}>
-          <View style={[styles.input, styles.inputFlexBox]}>
-            <View
-              style={[
-                styles.adornStartContainer,
-                styles.adornContainerSpaceBlock,
-              ]}
-            >
-              <Image
-                style={styles.icon4}
-                contentFit="cover"
-                source={require("../assets/icon.png")}
-              />
-            </View>
-            <Text style={[styles.label, styles.labelTypo1]} />
-            <Image
-              style={styles.adornEndContainer}
-              contentFit="cover"
-              source={require("../assets/adorn-end-container.png")}
-            />
-          </View>
-          <View style={[styles.underline, styles.underlineLayout]} />
-        </View>
-        <View style={[styles.formhelpertext, styles.formhelpertextSpaceBlock]}>
-          <Text style={[styles.helperText, styles.labelLayout]}>
-            Helper text
-          </Text>
-        </View>
-      </View>
-      <View style={styles.switch}>
-        <View style={[styles.slide, styles.slidePosition]}>
-          <View style={styles.slide1} />
-        </View>
-        <View style={[styles.knob, styles.knobPosition]}>
-          <Image
-            style={styles.knobIcon}
-            contentFit="cover"
-            source={require("../assets/knob.png")}
-          />
-        </View>
-      </View>
-      <View
-        style={[styles.controlIrrigationPlot2ColuChild, styles.controlPosition]}
-      />
-      <Text style={[styles.text, styles.textTypo]}>Plot:</Text>
-      <Text style={[styles.atebyDiaoureGallet, styles.atebyTypo1]}>#1</Text>
-      <Text style={[styles.text1, styles.textTypo]}>Next Irrigation:</Text>
-      <Text style={[styles.atebyDiaoureGallet1, styles.atebyTypo1]}>
-        07/06/2024 17:00
-      </Text>
-      <View
-        style={[styles.controlIrrigationPlot2ColuItem, styles.controlPosition]}
-      />
-      <View style={styles.uicolorsmainParent}>
-        <Image
-          style={[styles.uicolorsmainIcon, styles.iconLayout1]}
-          contentFit="cover"
-          source={require("../assets/uicolorsmain2.png")}
-        />
-        <Text style={[styles.remboursser, styles.chip1Typo]}> Good</Text>
-      </View>
-      <Text style={[styles.docteur, styles.labelTypo2]}>Status</Text>
-      <Text style={[styles.docteur1, styles.labelClr]}>
-        Water Frequency Per Day
-      </Text>
-      <Text style={[styles.docteur2, styles.labelClr]}>On/Off Valve</Text>
-      <Text style={[styles.docteur3, styles.labelClr]}>
-        Water Quantity Per Session
-      </Text>
-      <View style={styles.textfield1}>
-        <View style={styles.input1}>
-          <Text style={[styles.templabel, styles.labelLayout]}>Label</Text>
-          <View style={[styles.input2, styles.input2SpaceBlock]}>
-            <View
-              style={[
-                styles.adornStartContainer1,
-                styles.adornContainerSpaceBlock,
-              ]}
-            >
-              <Image
-                style={styles.icon4}
-                contentFit="cover"
-                source={require("../assets/icon1.png")}
-              />
-            </View>
-            <Text style={[styles.label1, styles.labelClr]}>13 Litres</Text>
-            <Image
-              style={styles.adornEndContainer}
-              contentFit="cover"
-              source={require("../assets/adorn-end-container1.png")}
-            />
-          </View>
-          <View style={[styles.underline1, styles.input2SpaceBlock]} />
-        </View>
-        <View style={styles.formhelpertextSpaceBlock}>
-          <Text style={[styles.helperText, styles.labelLayout]}>
-            Helper text
-          </Text>
-        </View>
-      </View>
-      <View style={styles.slider}>
-        <View style={styles.slider1}>
-          <View style={[styles.sliderrail, styles.sliderrailPosition]} />
-          <View style={[styles.slidertrack, styles.slidertrackPosition]} />
-          <View style={styles.marks}>
-            <View style={[styles.slidermark, styles.recLayout]}>
-              <View style={[styles.rec, styles.recLayout]} />
-              <View style={[styles.rec1, styles.recLayout]} />
-            </View>
-            <View style={[styles.slidermark, styles.recLayout]}>
-              <View style={[styles.rec, styles.recLayout]} />
-              <View style={[styles.rec1, styles.recLayout]} />
-            </View>
-            <View style={[styles.slidermark, styles.recLayout]}>
-              <View style={[styles.rec, styles.recLayout]} />
-              <View style={[styles.rec1, styles.recLayout]} />
-            </View>
-            <View style={[styles.slidermark, styles.recLayout]}>
-              <View style={[styles.rec, styles.recLayout]} />
-              <View style={[styles.rec1, styles.recLayout]} />
-            </View>
-            <View style={[styles.slidermark, styles.recLayout]}>
-              <View style={[styles.rec, styles.recLayout]} />
-            </View>
-            <View style={[styles.slidermark, styles.recLayout]}>
-              <View style={[styles.rec, styles.recLayout]} />
-            </View>
-            <View style={[styles.slidermark, styles.recLayout]}>
-              <View style={[styles.rec, styles.recLayout]} />
-            </View>
-          </View>
-          <Image
-            style={[styles.sliderthumbIcon, styles.selectLayout]}
-            contentFit="cover"
-            source={require("../assets/-sliderthumb.png")}
-          />
-          <View style={styles.sliderlabel}>
-            <View style={[styles.tooltip, styles.inputFlexBox]}>
-              <Text style={[styles.text2, styles.labelClr]}>20</Text>
-            </View>
-            <Image
-              style={styles.arrowIcon}
-              contentFit="cover"
-              source={require("../assets/arrow.png")}
-            />
-          </View>
-        </View>
-        <View style={styles.values}>
-          <View style={styles.slidervalueLabel}>
-            <Text style={[styles.text3, styles.text3Typo]}>0</Text>
-          </View>
-          <View style={styles.slidervalueLabel1}>
-            <Text style={[styles.text3, styles.text3Typo]}>12</Text>
-          </View>
-        </View>
-      </View>
-      <View style={styles.slider2}>
-        <View style={[styles.sliderrail1, styles.sliderrailPosition]} />
-        <View style={[styles.slidertrack1, styles.slidertrackPosition]} />
-        <View style={styles.marks}>
-          <View style={[styles.slidermark, styles.recLayout]}>
-            <View style={[styles.rec11, styles.recLayout]} />
-            <View style={[styles.rec1, styles.recLayout]} />
-          </View>
-          <View style={[styles.slidermark, styles.recLayout]}>
-            <View style={[styles.rec11, styles.recLayout]} />
-            <View style={[styles.rec1, styles.recLayout]} />
-          </View>
-          <View style={[styles.slidermark, styles.recLayout]}>
-            <View style={[styles.rec11, styles.recLayout]} />
-            <View style={[styles.rec1, styles.recLayout]} />
-          </View>
-          <View style={[styles.slidermark, styles.recLayout]}>
-            <View style={[styles.rec11, styles.recLayout]} />
-            <View style={[styles.rec1, styles.recLayout]} />
-          </View>
-          <View style={[styles.slidermark, styles.recLayout]}>
-            <View style={[styles.rec11, styles.recLayout]} />
-          </View>
-          <View style={[styles.slidermark, styles.recLayout]}>
-            <View style={[styles.rec11, styles.recLayout]} />
-          </View>
-          <View style={[styles.slidermark, styles.recLayout]}>
-            <View style={[styles.rec11, styles.recLayout]} />
-          </View>
-        </View>
-        <Image
-          style={[styles.sliderthumbIcon, styles.selectLayout]}
-          contentFit="cover"
-          source={require("../assets/-sliderthumb1.png")}
-        />
-        <View style={styles.sliderlabel}>
-          <View style={[styles.tooltip, styles.inputFlexBox]}>
-            <Text style={[styles.text2, styles.labelClr]}>20</Text>
-          </View>
-          <Image
-            style={styles.arrowIcon}
-            contentFit="cover"
-            source={require("../assets/arrow.png")}
-          />
-        </View>
-        <Text style={[styles.atebyDiaoureGallet2, styles.atebyTypo]}>1</Text>
-        <Text style={[styles.atebyDiaoureGallet3, styles.atebyTypo]}>8</Text>
-      </View>
-      <Image
-        style={[styles.controlIrrigationPlot2ColuInner, styles.textfieldLayout]}
-        contentFit="cover"
-        source={require("../assets/rectangle-56.png")}
-      />
-      <Text style={[styles.docteur4, styles.labelClr]}>Notifications</Text>
-      <View style={[styles.select, styles.selectLayout]}>
-        <View style={styles.input3}>
-          <View style={[styles.container, styles.activeFlexBox]}>
-            <Image
-              style={styles.adornStartContainer2}
-              contentFit="cover"
-              source={require("../assets/adorn-start-container1.png")}
-            />
-            <View
-              style={[styles.autocompletetag, styles.adornContainerSpaceBlock]}
-            >
-              <View style={styles.chipLayout}>
-                <View style={styles.avatar}>
-                  <Text style={styles.op}>OP</Text>
-                  <View style={styles.minLayout1} />
-                  <View style={[styles.border, styles.selectLayout]}>
-                    <View style={styles.badge}>
-                      <View style={styles.minWidth1} />
-                    </View>
-                  </View>
-                </View>
-                <View style={styles.typographySpaceBlock}>
-                  <Text style={[styles.chip1, styles.chip1Typo]}>Chip</Text>
-                </View>
-                <Image
-                  style={styles.cancelfilledIcon}
-                  contentFit="cover"
-                  source={require("../assets/cancelfilled1.png")}
-                />
-              </View>
-              <View style={[styles.chip2, styles.chipLayout]}>
-                <View style={styles.avatar}>
-                  <Text style={styles.op}>OP</Text>
-                  <View style={styles.minLayout1} />
-                  <View style={[styles.border, styles.selectLayout]}>
-                    <View style={styles.badge}>
-                      <View style={styles.minWidth1} />
-                    </View>
-                  </View>
-                </View>
-                <View style={styles.typographySpaceBlock}>
-                  <Text style={[styles.chip1, styles.chip1Typo]}>Chip</Text>
-                </View>
-                <Image
-                  style={styles.cancelfilledIcon}
-                  contentFit="cover"
-                  source={require("../assets/cancelfilled1.png")}
-                />
-              </View>
-              <View style={[styles.chip2, styles.chipLayout]}>
-                <View style={styles.avatar}>
-                  <Text style={styles.op}>OP</Text>
-                  <View style={styles.minLayout1} />
-                  <View style={[styles.border, styles.selectLayout]}>
-                    <View style={styles.badge}>
-                      <View style={styles.minWidth1} />
-                    </View>
-                  </View>
-                </View>
-                <View style={styles.typographySpaceBlock}>
-                  <Text style={[styles.chip1, styles.chip1Typo]}>Chip</Text>
-                </View>
-                <Image
-                  style={styles.cancelfilledIcon}
-                  contentFit="cover"
-                  source={require("../assets/cancelfilled1.png")}
-                />
-              </View>
-            </View>
-            <View style={styles.minHeight} />
-            <Text style={[styles.value, styles.valueTypo]}>1</Text>
-            <Text style={[styles.placeholder, styles.labelTypo1]}>
-              Placeholder
-            </Text>
-            <View style={[styles.minWidth6, styles.minLayout]} />
-            <Image
-              style={[styles.arrowdropdownfilledIcon, styles.buttonFabPosition]}
-              contentFit="cover"
-              source={require("../assets/arrowdropdownfilled.png")}
-            />
-            <Image
-              style={[
-                styles.autocompletecloseIcon,
-                styles.autocompletecloseIconPosition,
-              ]}
-              contentFit="cover"
-              source={require("../assets/autocompleteclose2.png")}
-            />
-          </View>
-          <View style={styles.labelContainer}>
-            <Text style={[styles.label2, styles.labelLayout]}>Column</Text>
-          </View>
-        </View>
-        <View style={[styles.formhelpertext, styles.formhelpertextSpaceBlock]}>
-          <Text style={styles.helperText2}>Helper text</Text>
-        </View>
-      </View>
-      <View style={[styles.select1, styles.selectLayout]}>
-        <View style={styles.input1}>
-          <Text style={[styles.label3, styles.labelClr]}>Column</Text>
-          <View style={[styles.content1, styles.input2SpaceBlock]}>
-            <Image
-              style={styles.adornStartContainer2}
-              contentFit="cover"
-              source={require("../assets/adorn-start-container2.png")}
-            />
-            <View
-              style={[styles.autocompletetag, styles.adornContainerSpaceBlock]}
-            >
-              <View style={styles.chipLayout}>
-                <View style={styles.avatar}>
-                  <Text style={styles.op}>OP</Text>
-                  <View style={styles.minLayout1} />
-                  <View style={[styles.border, styles.selectLayout]}>
-                    <View style={styles.badge}>
-                      <View style={styles.minWidth1} />
-                    </View>
-                  </View>
-                </View>
-                <View style={styles.typographySpaceBlock}>
-                  <Text style={[styles.chip1, styles.chip1Typo]}>Chip</Text>
-                </View>
-                <Image
-                  style={styles.cancelfilledIcon}
-                  contentFit="cover"
-                  source={require("../assets/cancelfilled2.png")}
-                />
-              </View>
-              <View style={[styles.chip2, styles.chipLayout]}>
-                <View style={styles.avatar}>
-                  <Text style={styles.op}>OP</Text>
-                  <View style={styles.minLayout1} />
-                  <View style={[styles.border, styles.selectLayout]}>
-                    <View style={styles.badge}>
-                      <View style={styles.minWidth1} />
-                    </View>
-                  </View>
-                </View>
-                <View style={styles.typographySpaceBlock}>
-                  <Text style={[styles.chip1, styles.chip1Typo]}>Chip</Text>
-                </View>
-                <Image
-                  style={styles.cancelfilledIcon}
-                  contentFit="cover"
-                  source={require("../assets/cancelfilled2.png")}
-                />
-              </View>
-              <View style={[styles.chip2, styles.chipLayout]}>
-                <View style={styles.avatar}>
-                  <Text style={styles.op}>OP</Text>
-                  <View style={styles.minLayout1} />
-                  <View style={[styles.border, styles.selectLayout]}>
-                    <View style={styles.badge}>
-                      <View style={styles.minWidth1} />
-                    </View>
-                  </View>
-                </View>
-                <View style={styles.typographySpaceBlock}>
-                  <Text style={[styles.chip1, styles.chip1Typo]}>Chip</Text>
-                </View>
-                <Image
-                  style={styles.cancelfilledIcon}
-                  contentFit="cover"
-                  source={require("../assets/cancelfilled2.png")}
-                />
-              </View>
-            </View>
-            <View style={styles.minHeight} />
-            <Text style={[styles.value1, styles.valueTypo]}>1</Text>
-            <Text style={[styles.placeholder, styles.labelTypo1]}>
-              Placeholder
-            </Text>
-            <Image
-              style={[
-                styles.autocompletecloseIcon1,
-                styles.autocompletecloseIconPosition,
-              ]}
-              contentFit="cover"
-              source={require("../assets/autocompleteclose3.png")}
-            />
-            <Image
-              style={[styles.arrowdropdownfilledIcon, styles.buttonFabPosition]}
-              contentFit="cover"
-              source={require("../assets/arrowdropdownfilled2.png")}
-            />
-            <View style={[styles.minWidth13, styles.minLayout]} />
-          </View>
-          <View style={[styles.default, styles.input2SpaceBlock]} />
-        </View>
-        <View style={styles.formhelpertextSpaceBlock}>
-          <Text style={styles.helperText2}>Helper text</Text>
-        </View>
-      </View>
-      <View style={[styles.pagination, styles.typographySpaceBlock]}>
-        <Image
-          style={[styles.paginationitemIcon, styles.buttonbaseLayout]}
-          contentFit="cover"
-          source={require("../assets/paginationitem.png")}
-        />
-        <Image
-          style={styles.paginationitemIconLayout}
-          contentFit="cover"
-          source={require("../assets/paginationitem1.png")}
-        />
-        <View style={styles.paginationitemIconLayout}>
-          <View style={[styles.buttonbase, styles.buttonbaseLayout]}>
-            <Text style={[styles.label4, styles.text3Typo]}>1</Text>
-          </View>
-        </View>
-        <View style={styles.paginationitemIconLayout}>
-          <Pressable
-            style={[styles.buttonbase1, styles.buttonbaseLayout]}
-            onPress={() => navigation.navigate("ControlIrrigationPlot2Colu")}
-          >
-            <Text style={[styles.label4, styles.text3Typo]}>2</Text>
-          </Pressable>
-        </View>
-        <View style={styles.paginationitemIconLayout}>
-          <View style={[styles.buttonbase1, styles.buttonbaseLayout]}>
-            <Text style={[styles.label4, styles.text3Typo]}>3</Text>
-          </View>
-        </View>
-        <View style={styles.paginationitemIconLayout}>
-          <View style={[styles.buttonbase1, styles.buttonbaseLayout]}>
-            <Text style={[styles.label4, styles.text3Typo]}>4</Text>
-          </View>
-        </View>
-        <View style={styles.paginationitemIconLayout}>
-          <View style={[styles.buttonbase1, styles.buttonbaseLayout]}>
-            <Text style={[styles.label4, styles.text3Typo]}>5</Text>
-          </View>
-        </View>
-        <View style={styles.paginationitemIconLayout}>
-          <View style={[styles.buttonbase1, styles.buttonbaseLayout]}>
-            <Text style={[styles.label4, styles.text3Typo]}>6</Text>
-          </View>
-        </View>
-        <View style={styles.paginationitemIconLayout}>
-          <View style={[styles.buttonbase1, styles.buttonbaseLayout]}>
-            <Text style={[styles.label4, styles.text3Typo]}>7</Text>
-          </View>
-        </View>
-        <Image
-          style={styles.paginationitemIconLayout}
-          contentFit="cover"
-          source={require("../assets/paginationitem2.png")}
-        />
-        <Image
-          style={[styles.paginationitemIcon3, styles.paginationitemIconLayout]}
-          contentFit="cover"
-          source={require("../assets/paginationitem3.png")}
-        />
-      </View>
-      <View style={[styles.switchDark, styles.switchFlexBox]}>
-        <View style={styles.handle}>
-          <View style={styles.target}>
-            <View style={styles.stateLayer}>
-              <View style={styles.handleShape}>
-                <View style={[styles.container1, styles.recLayout]} />
-              </View>
-            </View>
-          </View>
-        </View>
-      </View>
-      <View style={[styles.switchDark1, styles.switchFlexBox]}>
-        <View style={styles.handle}>
-          <View style={styles.target}>
-            <View style={styles.stateLayer}>
-              <View style={styles.handleShape}>
-                <View style={[styles.container1, styles.recLayout]} />
-              </View>
-            </View>
-          </View>
-        </View>
-      </View>
     </View>
   );
 };
 
 const styles = StyleSheet.create({
+  cardText: {
+    color: '#FFFFFF',
+  },
+  container: {
+    flex: 1,
+    flexDirection: 'column',
+    alignItems: 'center',
+    justifyContent: 'flex-start',
+    backgroundColor: 'rgba(255, 0, 0, 0.5)',
+  },
+  text: {
+    textAlign: 'left',
+    paddingLeft: 5,
+    width: '100%',
+  },
+  card: {
+    marginTop: 0,
+    backgroundColor: '#094E40',
+    padding: 10,
+    width: '100%',
+    height: 720,
+    borderRadius: 14, // Rounded corners
+  },
+  row: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    marginVertical: 5,
+  },
+  rowDouble: {
+    flexDirection: 'column',
+    marginVertical: 5,
+  },
+  control_pagination: {
+    marginTop: 20,
+    flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  control_pageNumber: {
+    margin: 5,
+    padding: 5,
+    borderWidth: 1,
+    borderRadius: 5,
+    borderColor: '#000',
+  },
+  pill: {
+    backgroundColor: 'green',
+    paddingVertical: 5,
+    paddingHorizontal: 10,
+    borderRadius: 20,
+  },
+  pillText: {
+    color: 'white',
+    fontWeight: 'bold',
+  },
+  controlcard: {
+    position: 'absolute',
+    top: 170,
+    width: 342,
+    height: 510,
+    left: 20,
+    // backgroundColor: 'rgba(255, 0, 0, 0.5)',
+  },
   buttonFabPosition: {
     right: 0,
     position: "absolute",
@@ -1617,14 +1309,14 @@ const styles = StyleSheet.create({
     position: "absolute",
   },
   buttonbase: {
-    backgroundColor: Color.actionSelected,
-    width: 26,
     borderRadius: Border.br_81xl,
     top: 0,
     left: 0,
     position: "absolute",
   },
   buttonbase1: {
+    backgroundColor: Color.actionSelected,
+    width: 26,
     borderRadius: Border.br_81xl,
     top: 0,
     left: 0,
@@ -1687,4 +1379,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default ControlIrrigationPlot2Colu1;
+export default ControlIrrigationPlot2Colu;
