@@ -7,7 +7,6 @@ import HomepageScrollingAnalytics from "./screens/HomepageScrollingAnalytics";
 import AIChatbotSent from "./screens/AIChatbotSent";
 import AIChatbotSent1 from "./screens/AIChatbotSent1";
 import AIChatbot from "./screens/AIChatbot";
-import SocialForumPostingComment from "./screens/SocialForumPostingComment";
 import SocialForum from "./screens/SocialForum";
 import AidMainPage from "./screens/AidMainPage";
 import SettingsEditedSuccessfully from "./screens/SettingsEditedSuccessfully";
@@ -30,7 +29,6 @@ import OnBoarding from "./screens/OnBoarding";
 import OnBoarding1 from "./screens/OnBoarding1";
 import OnBoarding2 from "./screens/OnBoarding2";
 import OnBoarding3 from "./screens/OnBoarding3";
-import SocialForumPostedComment from "./screens/SocialForumPostedComment";
 import SignUpPasswordConcealed from "./screens/SignUpPasswordConcealed";
 import SignUpPassword from "./screens/SignUpPassword";
 import AccountRegisteredSuccessfull from "./screens/AccountRegisteredSuccessfull";
@@ -89,11 +87,6 @@ const App = () => {
             <Stack.Screen
               name="AIChatbot"
               component={AIChatbot}
-              options={{ headerShown: false }}
-            />
-            <Stack.Screen
-              name="SocialForumPostingComment"
-              component={SocialForumPostingComment}
               options={{ headerShown: false }}
             />
             <Stack.Screen
@@ -204,11 +197,6 @@ const App = () => {
             <Stack.Screen
               name="OnBoarding3"
               component={OnBoarding3}
-              options={{ headerShown: false }}
-            />
-            <Stack.Screen
-              name="SocialForumPostedComment"
-              component={SocialForumPostedComment}
               options={{ headerShown: false }}
             />
             <Stack.Screen
