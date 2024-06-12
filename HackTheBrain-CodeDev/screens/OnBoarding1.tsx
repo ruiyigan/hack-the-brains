@@ -28,8 +28,7 @@ const OnBoarding1 = () => {
           </Text>
           <Text style={[styles.connectWithFellow, styles.tapAnywhereForTypo]}>
             Connect with fellow farmers to share best practices, discuss
-            challenges, and collaborate on solutions. Join a community dedicated
-            to sustainable and efficient farming.
+            challenges, and collaborate on solutions.
           </Text>
         </View>
         <View style={[styles.action, styles.groupPosition]}>
