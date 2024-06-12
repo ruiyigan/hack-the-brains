@@ -20,6 +20,18 @@
         "isShadingOpen": false,
         "shadingStrength": 50,
         "enableNotifications": true
+      },
+      {
+        "columnIndex": 4,
+        "isShadingOpen": false,
+        "shadingStrength": 50,
+        "enableNotifications": true
+      },
+      {
+        "columnIndex": 5,
+        "isShadingOpen": false,
+        "shadingStrength": 50,
+        "enableNotifications": true
       }
     ]
   },
@@ -41,6 +53,18 @@
       },
       {
         "columnIndex": 3,
+        "isShadingOpen": false,
+        "shadingStrength": 50,
+        "enableNotifications": true
+      },
+      {
+        "columnIndex": 4,
+        "isShadingOpen": false,
+        "shadingStrength": 50,
+        "enableNotifications": true
+      },
+      {
+        "columnIndex": 5,
         "isShadingOpen": false,
         "shadingStrength": 50,
         "enableNotifications": true
@@ -68,6 +92,18 @@
         "isShadingOpen": false,
         "shadingStrength": 50,
         "enableNotifications": true
+      },
+      {
+        "columnIndex": 4,
+        "isShadingOpen": false,
+        "shadingStrength": 50,
+        "enableNotifications": true
+      },
+      {
+        "columnIndex": 5,
+        "isShadingOpen": false,
+        "shadingStrength": 50,
+        "enableNotifications": true
       }
     ]
   },
@@ -92,6 +128,18 @@
         "isShadingOpen": false,
         "shadingStrength": 50,
         "enableNotifications": true
+      },
+      {
+        "columnIndex": 4,
+        "isShadingOpen": false,
+        "shadingStrength": 50,
+        "enableNotifications": true
+      },
+      {
+        "columnIndex": 5,
+        "isShadingOpen": false,
+        "shadingStrength": 50,
+        "enableNotifications": true
       }
     ]
   },
@@ -113,6 +161,18 @@
       },
       {
         "columnIndex": 3,
+        "isShadingOpen": false,
+        "shadingStrength": 50,
+        "enableNotifications": true
+      },
+      {
+        "columnIndex": 4,
+        "isShadingOpen": false,
+        "shadingStrength": 50,
+        "enableNotifications": true
+      },
+      {
+        "columnIndex": 5,
         "isShadingOpen": false,
         "shadingStrength": 50,
         "enableNotifications": true
