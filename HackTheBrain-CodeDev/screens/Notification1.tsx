@@ -28,7 +28,7 @@ const Notification1 = () => {
           </Text>
         </View>
       </View>
-      <Text style={[styles.title, styles.titleTypo]}>Yesterrday</Text>
+      <Text style={[styles.title, styles.titleTypo]}>Yesterday</Text>
       <View style={[styles.frame1, styles.framePosition]}>
         <Image
           style={styles.spacerLayout}
@@ -93,7 +93,7 @@ const Notification1 = () => {
               />
             </TouchableHighlight>
           </View>
-          <Text style={[styles.title2, styles.title2Typo]}>Notification</Text>
+          <Text style={[styles.title2, styles.title2Typo]}>Notifications</Text>
         </View>
         <Image
           style={[
@@ -118,7 +118,7 @@ const Notification1 = () => {
         style={[styles.deleteAll, styles.deletePosition]}
         onPress={() => navigation.navigate("NotificationCleared")}
       >
-        <Text style={styles.deleteAll1}>Delete all</Text>
+        <Text style={styles.deleteAll1}>Delete All</Text>
       </Pressable>
     </View>
   );
@@ -173,7 +173,7 @@ const styles = StyleSheet.create({
     fontSize: FontSize.sansHeadingHeading5SemiBold_size,
     textAlign: "left",
     fontFamily: FontFamily.nunitoBold,
-    fontWeight: "700",
+    fontWeight: "800",
     lineHeight: 24,
   },
   textSpaceBlock: {
@@ -335,7 +335,7 @@ const styles = StyleSheet.create({
     fontSize: FontSize.title24Bold_size,
     lineHeight: 29,
     color: Color.darkMode,
-    marginLeft: 8,
+    marginLeft: 3,
     flex: 1,
   },
   leftContainer: {
@@ -371,7 +371,7 @@ const styles = StyleSheet.create({
     fontSize: FontSize.sansBodyBodyCopy_size,
   },
   deleteAll: {
-    right: 55,
+    right: 45,
   },
   notification: {
     backgroundColor: Color.colorWhitesmoke_100,

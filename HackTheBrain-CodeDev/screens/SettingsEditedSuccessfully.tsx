@@ -568,7 +568,7 @@ const styles = StyleSheet.create({
   },
   search: {
     marginTop: -14,
-    marginLeft: -74.5,
+    marginLeft: -55,
     textAlign: "center",
     top: "50%",
     left: "50%",

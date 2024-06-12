@@ -33,7 +33,7 @@ const NotificationCleared = () => {
               source={require("../assets/vuesaxlineararrowleft1.png")}
             />
           </Pressable>
-          <Text style={[styles.title, styles.titleTypo]}>Notification</Text>
+          <Text style={[styles.title, styles.titleTypo]}>Notifications</Text>
         </View>
         <Image
           style={[
@@ -109,13 +109,13 @@ const styles = StyleSheet.create({
   },
   pageHeader: {
     top: 52,
-    left: 16,
+    left: 11,
     width: 327,
     position: "absolute",
   },
   noNewNotifications: {
     top: 270,
-    left: 57,
+    left: 80,
     lineHeight: 24,
     fontFamily: FontFamily.poppinsBold,
     color: Color.universalBlack,

@@ -369,7 +369,7 @@ const styles = StyleSheet.create({
   tabBar: {
     alignItems: "center",
     flexDirection: "row",
-    left: 0,
+    left: 15,
     top: 0,
     position: "absolute",
   },
@@ -476,7 +476,7 @@ const styles = StyleSheet.create({
     color: Color.textColor,
     fontSize: FontSize.sansBodyBodySmallSemiBold_size,
     left: 48,
-    top: 16,
+    top: 0,
     textAlign: "left",
     fontFamily: FontFamily.poppinsMedium,
     fontWeight: "500",

@@ -398,7 +398,7 @@ const styles = StyleSheet.create({
     lineHeight: 28,
     color: Color.textColor,
     left: 0,
-    top: 0,
+    top: 5,
     position: "absolute",
   },
   barSearchInactiveChild: {
