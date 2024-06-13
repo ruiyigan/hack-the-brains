@@ -387,7 +387,7 @@ const styles = StyleSheet.create({
   },
   buttonText: {
     top: 339,
-    left: 153,
+    left: 140,
   },
   frame7: {
     top: 148,
@@ -432,7 +432,7 @@ const styles = StyleSheet.create({
     height: 80,
     elevation: 8,
     shadowRadius: 8,
-    top: 44,
+    top: 35,
     borderRadius: Border.br_base,
     shadowOpacity: 1,
     shadowOffset: {
@@ -441,7 +441,7 @@ const styles = StyleSheet.create({
     },
     shadowColor: "rgba(0, 0, 0, 0.08)",
     width: 327,
-    left: 0,
+    left: -10,
     position: "absolute",
     overflow: "hidden",
     backgroundColor: Color.universalWhite,

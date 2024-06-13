@@ -752,7 +752,7 @@ const styles = StyleSheet.create({
     color: Color.universalWhite,
   },
   text16: {
-    left: -99,
+    left: -108,
     lineHeight: 24,
     fontSize: FontSize.sansBodyBodyCopy_size,
     textAlign: "center",

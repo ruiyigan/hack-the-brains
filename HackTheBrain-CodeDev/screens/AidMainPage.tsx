@@ -375,7 +375,7 @@ const styles = StyleSheet.create({
   },
   barTab2Project: {
     top: 120,
-    left: 8,
+    left: 5,
     width: 313,
     height: 40,
     position: "absolute",

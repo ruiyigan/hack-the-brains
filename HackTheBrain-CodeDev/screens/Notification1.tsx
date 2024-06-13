@@ -235,7 +235,7 @@ const styles = StyleSheet.create({
   },
   frame: {
     top: 358,
-    left: 28,
+    left: 20,
   },
   title: {
     top: 318,
@@ -251,7 +251,7 @@ const styles = StyleSheet.create({
   },
   frame1: {
     top: 228,
-    left: 23,
+    left: 20,
   },
   container: {
     width: 43,

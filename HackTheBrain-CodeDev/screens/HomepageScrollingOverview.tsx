@@ -269,7 +269,7 @@ const HomepageScrollingOverview = () => {
                 <Text style={[styles.text4, styles.textTypo1]}>From</Text>
                 <Text style={[styles.text5, styles.textTypo1]}>To</Text>
                 <Text style={[styles.text6, styles.textTypo]}>
-                  Soil moiature
+                  Soil moisture
                 </Text>
                 <Text style={[styles.text7, styles.textTypo]}>pH level</Text>
                 <Text style={[styles.atebyDiaoureGallet4, styles.atebyTypo]}>

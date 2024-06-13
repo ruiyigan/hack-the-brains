@@ -124,9 +124,10 @@ const styles = StyleSheet.create({
   },
   signIn: {
     marginLeft: 8,
+    top: -1,
   },
   text: {
-    top: 721,
+    top: 715,
     left: 54,
   },
   hackTheBrainOnboard41: {
@@ -140,7 +141,7 @@ const styles = StyleSheet.create({
     textAlign: "left",
   },
   text1: {
-    top: 676,
+    top: 670,
     left: 59,
     width: 271,
   },
