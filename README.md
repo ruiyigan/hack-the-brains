@@ -2,6 +2,9 @@
 
 AgriSmart is an innovative application designed to empower farmers with smart solutions, leveraging advanced technology to mitigate climate change impacts. Our mission is to revolutionize agricultural practices by ensuring sustainability, resilience, and productivity amidst environmental challenges. Through real-time data analytics, precision farming, and resource optimization, AgriSmart equips farmers with the tools and knowledge to adapt and thrive, fostering a future where agriculture and nature coexist harmoniously.
 
+## App demonstration:
+https://youtu.be/pBtGvjzbx3g?si=RjFUcKkB4HDAoWe5 
+
 ## Features
 
 1. **Precision Agriculture Dashboard**
